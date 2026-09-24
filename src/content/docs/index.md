@@ -4,7 +4,7 @@ description: Product documentation for Conscia Labs, starting with AI Gateway.
 template: splash
 hero:
   title: Conscia Labs documentation
-  tagline: Guides and references for building with Conscia products.
+  tagline: Guides and references for using, building and managing with Conscia Labs
   actions:
     - text: Explore AI Gateway
       link: /gateway/

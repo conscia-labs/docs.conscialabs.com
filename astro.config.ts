@@ -22,8 +22,12 @@ export default defineConfig({
         { label: 'Concepts', items: [
           { label: 'Authentication', link: '/gateway/authentication/' },
           { label: 'Models', link: '/gateway/models/' },
+          { label: 'Access and allowances', link: '/gateway/access-and-allowances/' },
         ] },
-        { label: 'Integrations', items: [{ label: 'Connect a client', link: '/gateway/integrations/' }] },
+        { label: 'Integrations', items: [
+          { label: 'Connect a client', link: '/gateway/integrations/' },
+          { label: 'Connect an App', link: '/gateway/integrations/apps/' },
+        ] },
         { label: 'Operate', items: [{ label: 'Troubleshoot requests', link: '/gateway/troubleshooting/' }] },
         { label: 'Reference', items: [{ label: 'API reference', link: '/gateway/api/' }] },
       ],

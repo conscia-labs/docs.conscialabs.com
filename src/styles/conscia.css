@@ -102,12 +102,10 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .hero a.sl-link-button { min-height: 3.15rem; padding: 0.75rem 1.25rem; border-radius: 0.35rem; font-size: 0.84rem; font-weight: 650; letter-spacing: 0.01em; }
 
 /* Root splash page: an editorial landing surface that keeps the docs tree in focus. */
-.conscia-home { display: grid; gap: clamp(2rem, 5vw, 4.5rem); margin-top: clamp(2.5rem, 6vw, 5rem); }
-.conscia-home__intro { max-width: 42rem; }
+.conscia-home { display: grid; gap: clamp(2rem, 5vw, 4.5rem); margin-top: clamp(1.5rem, 4vw, 3.5rem); }
 .conscia-home__kicker { margin: 0 0 0.9rem; color: var(--sl-color-text-accent); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; line-height: 1.2; text-transform: uppercase; }
 .conscia-home :is(h2, p) { margin-top: 0; }
 .conscia-home h2 { margin-bottom: 1rem; color: var(--sl-color-text); font-size: clamp(1.7rem, 3.8vw, 2.7rem); font-weight: 640; letter-spacing: -0.045em; line-height: 1.08; }
-.conscia-home__intro > p:last-child { max-width: 36rem; margin-bottom: 0; color: var(--sl-color-gray-2); font-size: 1.08rem; line-height: 1.65; }
 .conscia-home__product { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.65fr); gap: clamp(1.75rem, 6vw, 6rem); align-items: end; padding: clamp(1.6rem, 4vw, 3rem); border: 1px solid var(--sl-color-hairline); border-top: 0.3rem solid var(--sl-color-accent); border-radius: var(--sl-border-radius); background: color-mix(in srgb, var(--sl-color-accent-low) 42%, var(--sl-color-bg)); }
 .conscia-home__product h2 { margin-bottom: 0.75rem; font-size: clamp(2rem, 4.5vw, 3.2rem); }
 .conscia-home__product-copy > p:not(.conscia-home__kicker) { max-width: 34rem; margin-bottom: 1.5rem; color: var(--sl-color-gray-2); font-size: 1.05rem; line-height: 1.55; }
@@ -117,7 +115,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .conscia-home__links .conscia-home__primary-link:hover { background: var(--sl-color-accent-high); color: var(--sl-color-black); }
 .conscia-home__product-index { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem 1rem; align-content: end; padding-top: 1rem; border-top: 1px solid var(--sl-color-hairline); color: var(--sl-color-gray-2); font-size: 0.8rem; font-weight: 650; letter-spacing: 0.04em; }
 .conscia-home__product-index span::before { content: '↳'; margin-right: 0.45rem; color: var(--sl-color-accent); }
-.conscia-home__note { max-width: 38rem; margin-bottom: 0; color: var(--sl-color-gray-3); font-size: 0.92rem; }
 :root[data-theme='dark'] .conscia-home__product { background: color-mix(in srgb, var(--sl-color-accent-low) 58%, var(--sl-color-bg)); }
 :root[data-theme='dark'] .conscia-home__links .conscia-home__primary-link { color: #17191c; }
 :root[data-theme='dark'] .conscia-home__links .conscia-home__primary-link:hover { background: var(--sl-color-accent-high); }
@@ -126,7 +123,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   .conscia-brand__divider, .conscia-brand__section { display: none; }
   .conscia-header-links { display: none; }
   .conscia-footer__inner { align-items: flex-start; flex-direction: column; }
-  .conscia-home { gap: 2.7rem; margin-top: 2.3rem; }
+  .conscia-home { gap: 2.7rem; margin-top: 1.5rem; }
   .conscia-home__product { grid-template-columns: 1fr; gap: 2rem; padding: 1.35rem; }
   .conscia-home__product-index { padding-top: 1.25rem; }
 }

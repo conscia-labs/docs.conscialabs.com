@@ -1,0 +1,137 @@
+@import '@fontsource-variable/source-sans-3';
+
+:root {
+  --sl-font: 'Source Sans 3 Variable', 'Source Sans 3', 'Source Sans', 'Aptos', 'Segoe UI', Arial, sans-serif;
+  --sl-font-system: var(--sl-font);
+  --sl-color-accent-low: #e8eafd;
+  --sl-color-accent: #5965cc;
+  --sl-color-accent-high: #3f4da8;
+  --sl-color-white: #140c15;
+  --sl-color-gray-1: #27242b;
+  --sl-color-gray-2: #474550;
+  --sl-color-gray-3: #737380;
+  --sl-color-gray-4: #c2c2c8;
+  --sl-color-gray-5: #e4e5e5;
+  --sl-color-gray-6: #f0f0f2;
+  --sl-color-black: #f9f9fa;
+  --sl-color-bg: #f9f9fa;
+  --sl-color-bg-nav: #f9f9fa;
+  --sl-color-bg-sidebar: #f9f9fa;
+  --sl-color-hairline-light: #e4e5e5;
+  --sl-color-hairline: #e4e5e5;
+  --sl-color-hairline-shade: #d1d2d5;
+  --sl-color-text: #140c15;
+  --sl-color-text-accent: #3f4da8;
+  --sl-color-green-low: #e2f1ee;
+  --sl-color-green: #3c837b;
+  --sl-color-green-high: #285a54;
+  --sl-color-blue-low: #e3f3f5;
+  --sl-color-blue: #3a818b;
+  --sl-color-blue-high: #28575f;
+  --sl-border-radius: 0.35rem;
+  --sl-content-width: 48rem;
+  --sl-sidebar-width: 18rem;
+  --sl-nav-height: 4.5rem;
+  --sl-line-height: 1.65;
+  --sl-text-h1: clamp(2.4rem, 5vw, 3.6rem);
+}
+
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #292d4e;
+  --sl-color-accent: #aeb6ef;
+  --sl-color-accent-high: #dce0ff;
+  --sl-color-white: #eff1f4;
+  --sl-color-gray-1: #e1e3e8;
+  --sl-color-gray-2: #b3bac5;
+  --sl-color-gray-3: #858b97;
+  --sl-color-gray-4: #555b65;
+  --sl-color-gray-5: #32353b;
+  --sl-color-gray-6: #24272c;
+  --sl-color-black: #17191c;
+  --sl-color-bg: #17191c;
+  --sl-color-bg-nav: #17191c;
+  --sl-color-bg-sidebar: #17191c;
+  --sl-color-hairline-light: rgb(255 255 255 / 7%);
+  --sl-color-hairline: rgb(255 255 255 / 12%);
+  --sl-color-hairline-shade: rgb(255 255 255 / 18%);
+  --sl-color-text: #eff1f4;
+  --sl-color-text-accent: #aeb6ef;
+  --sl-color-green-low: #203b38;
+  --sl-color-green: #a3d6cf;
+  --sl-color-green-high: #d6f0eb;
+  --sl-color-blue-low: #1e383c;
+  --sl-color-blue: #8ed4df;
+  --sl-color-blue-high: #d4f1f4;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--sl-font); -webkit-font-smoothing: antialiased; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #5965cc; outline-offset: 3px; }
+:root[data-theme='dark'] a:focus-visible,
+:root[data-theme='dark'] button:focus-visible,
+:root[data-theme='dark'] input:focus-visible { outline-color: #aeb6ef; }
+::selection { background: #5965cc; color: #fff; }
+
+.conscia-brand { display: inline-flex; align-items: center; gap: 0.65rem; color: var(--sl-color-text); text-decoration: none; white-space: nowrap; }
+.conscia-brand__symbol { width: 1.5rem; height: 1.5rem; }
+.conscia-brand__symbol--dark { display: none; }
+:root[data-theme='dark'] .conscia-brand__symbol--light { display: none; }
+:root[data-theme='dark'] .conscia-brand__symbol--dark { display: inline-block; }
+.conscia-brand__wordmark, .conscia-footer__brand { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.13em; line-height: 1; }
+.conscia-brand__wordmark span, .conscia-footer__brand span { color: var(--sl-color-accent); }
+.conscia-brand__divider { width: 1px; height: 1.25rem; margin-inline: 0.3rem; background: var(--sl-color-hairline); }
+.conscia-brand__section { color: var(--sl-color-gray-2); font-size: 0.92rem; font-weight: 560; letter-spacing: 0; }
+.conscia-header-links { display: flex; align-items: center; gap: clamp(1rem, 2vw, 1.75rem); }
+.conscia-header-links a { color: var(--sl-color-gray-2); font-size: 0.8rem; font-weight: 620; letter-spacing: 0.03em; text-decoration: none; transition: color 180ms ease; }
+.conscia-header-links a:hover { color: var(--sl-color-accent); }
+.conscia-header-links a:focus-visible { outline-offset: 4px; }
+.conscia-footer { margin-top: 4rem; border-top: 1px solid var(--sl-color-hairline); background: #17191c; color: #eff1f4; }
+.conscia-footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; max-width: 80rem; margin-inline: auto; padding: 1.35rem clamp(1.25rem, 4vw, 3rem); }
+.conscia-footer__brand { color: #eff1f4; text-decoration: none; }
+.conscia-footer__brand span { color: #aeb6ef; }
+.conscia-footer nav { display: flex; flex-wrap: wrap; gap: 1.35rem; }
+.conscia-footer nav a, .conscia-footer p { margin: 0; color: #b3bac5; font-size: 0.85rem; text-decoration: none; }
+.conscia-footer nav a:hover { color: #aeb6ef; }
+.sl-markdown-content a:not(:where(.not-content *)) { text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.sl-markdown-content :is(h1, h2, h3) { letter-spacing: -0.025em; }
+.sl-markdown-content h1 { font-weight: 650; letter-spacing: -0.04em; }
+.sl-markdown-content pre { border-radius: 0.35rem; }
+.sl-markdown-content :is(.card, .card-grid) { --sl-card-border: var(--sl-color-hairline); }
+.hero h1 { letter-spacing: -0.055em; }
+.hero .tagline { max-width: 42rem; }
+.hero a.sl-link-button { min-height: 3.15rem; padding: 0.75rem 1.25rem; border-radius: 0.35rem; font-size: 0.84rem; font-weight: 650; letter-spacing: 0.01em; }
+
+/* Root splash page: an editorial landing surface that keeps the docs tree in focus. */
+.conscia-home { display: grid; gap: clamp(2rem, 5vw, 4.5rem); margin-top: clamp(2.5rem, 6vw, 5rem); }
+.conscia-home__intro { max-width: 42rem; }
+.conscia-home__kicker { margin: 0 0 0.9rem; color: var(--sl-color-text-accent); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; line-height: 1.2; text-transform: uppercase; }
+.conscia-home :is(h2, p) { margin-top: 0; }
+.conscia-home h2 { margin-bottom: 1rem; color: var(--sl-color-text); font-size: clamp(1.7rem, 3.8vw, 2.7rem); font-weight: 640; letter-spacing: -0.045em; line-height: 1.08; }
+.conscia-home__intro > p:last-child { max-width: 36rem; margin-bottom: 0; color: var(--sl-color-gray-2); font-size: 1.08rem; line-height: 1.65; }
+.conscia-home__product { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.65fr); gap: clamp(1.75rem, 6vw, 6rem); align-items: end; padding: clamp(1.6rem, 4vw, 3rem); border: 1px solid var(--sl-color-hairline); border-top: 0.3rem solid var(--sl-color-accent); border-radius: var(--sl-border-radius); background: color-mix(in srgb, var(--sl-color-accent-low) 42%, var(--sl-color-bg)); }
+.conscia-home__product h2 { margin-bottom: 0.75rem; font-size: clamp(2rem, 4.5vw, 3.2rem); }
+.conscia-home__product-copy > p:not(.conscia-home__kicker) { max-width: 34rem; margin-bottom: 1.5rem; color: var(--sl-color-gray-2); font-size: 1.05rem; line-height: 1.55; }
+.conscia-home__links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.85rem 1.35rem; font-size: 0.9rem; font-weight: 650; }
+.conscia-home__links a { color: var(--sl-color-text-accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.conscia-home__links .conscia-home__primary-link { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.72rem 0.95rem; border-radius: var(--sl-border-radius); background: var(--sl-color-accent); color: var(--sl-color-black); text-decoration: none; }
+.conscia-home__links .conscia-home__primary-link:hover { background: var(--sl-color-accent-high); color: var(--sl-color-black); }
+.conscia-home__product-index { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem 1rem; align-content: end; padding-top: 1rem; border-top: 1px solid var(--sl-color-hairline); color: var(--sl-color-gray-2); font-size: 0.8rem; font-weight: 650; letter-spacing: 0.04em; }
+.conscia-home__product-index span::before { content: '↳'; margin-right: 0.45rem; color: var(--sl-color-accent); }
+.conscia-home__note { max-width: 38rem; margin-bottom: 0; color: var(--sl-color-gray-3); font-size: 0.92rem; }
+:root[data-theme='dark'] .conscia-home__product { background: color-mix(in srgb, var(--sl-color-accent-low) 58%, var(--sl-color-bg)); }
+:root[data-theme='dark'] .conscia-home__links .conscia-home__primary-link { color: #17191c; }
+:root[data-theme='dark'] .conscia-home__links .conscia-home__primary-link:hover { background: var(--sl-color-accent-high); }
+
+@media (max-width: 50rem) {
+  .conscia-brand__divider, .conscia-brand__section { display: none; }
+  .conscia-header-links { display: none; }
+  .conscia-footer__inner { align-items: flex-start; flex-direction: column; }
+  .conscia-home { gap: 2.7rem; margin-top: 2.3rem; }
+  .conscia-home__product { grid-template-columns: 1fr; gap: 2rem; padding: 1.35rem; }
+  .conscia-home__product-index { padding-top: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}

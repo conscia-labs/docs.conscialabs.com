@@ -32,6 +32,10 @@ hero:
 
 [Troubleshoot a request](/gateway/troubleshooting/) using HTTP status guidance and safe diagnostic details.
 
+## Organization Admin
+
+[Manage organization access](/gateway/organization-admin/) for people, groups, policies, models, allowances, and automatic model selection.
+
 ## Reference
 
 [AI Gateway API reference](/gateway/api/) explains the current contract integration status.

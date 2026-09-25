@@ -24,6 +24,14 @@ export default defineConfig({
           { label: 'Models', link: '/gateway/models/' },
           { label: 'Access and allowances', link: '/gateway/access-and-allowances/' },
         ] },
+        { label: 'Organization Admin', items: [
+          { label: 'Administration overview', link: '/gateway/organization-admin/' },
+          { label: 'Onboard people', link: '/gateway/organization-admin/onboard-people/' },
+          { label: 'Groups', link: '/gateway/organization-admin/groups/' },
+          { label: 'Policies', link: '/gateway/organization-admin/policies/' },
+          { label: 'Curate models', link: '/gateway/organization-admin/models/' },
+          { label: 'Model Router', link: '/gateway/organization-admin/model-router/' },
+        ] },
         { label: 'Integrations', items: [
           { label: 'Connect a client', link: '/gateway/integrations/' },
           { label: 'Connect an App', link: '/gateway/integrations/apps/' },

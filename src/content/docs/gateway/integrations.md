@@ -5,6 +5,8 @@ description: Configure compatible SDKs and coding tools to use Conscia AI Gatewa
 
 The Gateway exposes OpenAI-compatible and Anthropic-compatible API surfaces. Supported integration targets include OpenAI-compatible clients, Anthropic-compatible clients, Claude Code, Codex, and OpenCode.
 
+If you use a coding harness, see [Correlate usage by activity](/gateway/integrations/activity-correlation/) for Codex, Claude Code, and OpenCode configuration. The guide explains how a harness session, a user-visible activity, and its raw model requests relate.
+
 Compatibility can vary by model and by the feature a client requests. Confirm the transport, model, and features your application needs against the current API contract. The client names here do not imply complete compatibility or certification for every version or feature.
 
 ## Base URLs

@@ -34,9 +34,13 @@ export default defineConfig({
         ] },
         { label: 'Integrations', items: [
           { label: 'Connect a client', link: '/gateway/integrations/' },
+          { label: 'Correlate usage by activity', link: '/gateway/integrations/activity-correlation/' },
           { label: 'Connect an App', link: '/gateway/integrations/apps/' },
         ] },
-        { label: 'Operate', items: [{ label: 'Troubleshoot requests', link: '/gateway/troubleshooting/' }] },
+        { label: 'Operate', items: [
+          { label: 'Troubleshoot requests', link: '/gateway/troubleshooting/' },
+          { label: 'Understand usage activity', link: '/gateway/integrations/activity-correlation/' },
+        ] },
         { label: 'Reference', items: [{ label: 'API reference', link: '/gateway/api/' }] },
       ],
       components: {

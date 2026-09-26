@@ -21,6 +21,8 @@ Each caller has one effective allowance. A direct allowance takes precedence ove
 
 Usage history remains available after an allowance resets. A reset starts a new active counter; it does not remove historical usage.
 
+For grouped usage investigation from coding tools, see [Correlate usage by activity](/gateway/integrations/activity-correlation/). Activity groups are a convenience view; raw usage events remain authoritative.
+
 ## Selecting a model
 
 Use an explicit public model ID when your application requires a specific model:

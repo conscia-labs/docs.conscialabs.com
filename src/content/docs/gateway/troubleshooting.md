@@ -20,6 +20,8 @@ description: Interpret common HTTP errors and collect safe diagnostics for a Gat
 
 Record the `x-request-id` and `x-correlation-id` response headers, when present, with the approximate time and endpoint path. Applications may send `x-correlation-id` when they already have a safe correlation value. These IDs let operators locate the request without its content.
 
+For harness-level session and activity identifiers, see [Correlate usage by activity](/gateway/integrations/activity-correlation/). Do not use request IDs, prompts, credentials, or personal data as activity identifiers.
+
 ## Share diagnostics safely
 
 Never share API keys, prompts, request bodies, or other sensitive content with support. Share only the HTTP status, request or correlation ID, approximate timestamp, endpoint path, and a concise description of the observed behavior. Redact organization or user identifiers if they are not needed for diagnosis.

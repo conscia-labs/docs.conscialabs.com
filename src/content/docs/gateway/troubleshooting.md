@@ -3,18 +3,41 @@ title: Troubleshoot AI Gateway requests
 description: Interpret common HTTP errors and collect safe diagnostics for a Gateway request.
 ---
 
+## Check the URL and credential first
+
+Confirm that the client is using the base URL for the intended public transport:
+
+- OpenAI-compatible requests use the `/v1` base URL from Developer Portal → **Quickstart**.
+- Anthropic-compatible clients use the Gateway origin and add the client's documented versioned path.
+
+Then confirm that the credential is a Conscia-issued personal or application credential, is active, and belongs to the expected organization and environment. Do not configure an upstream provider key.
+
 ## Check the HTTP status
 
 | Status | What to check |
 | --- | --- |
-| `400` Bad Request | Validate the request JSON, required fields, parameter types, and feature support for the selected model. |
+| `400` Bad Request | Validate the request JSON, required fields, parameter types, public model ID, and feature support for the selected transport and model. |
 | `401` Unauthorized | Confirm that the `Authorization: Bearer` header is present and that the Conscia credential is valid and has not been revoked. Do not include its value in a support request. |
-| `403` Forbidden | Check that the credential and organization are authorized for the requested operation or resource. Ask an organization administrator to review access. |
-| `404` Not Found | Check the public endpoint path and whether the public model ID is available to this credential. |
-| `402` Payment Required | The request exceeded an applicable organization budget or quota. Ask an organization administrator to review the effective budget, quota, or usage policy. |
-| `429` Too Many Requests | The request exceeded an applicable rate limit. Reduce request frequency and follow any retry guidance returned by the service. Do not assume a particular limit. |
-| `503` Service Unavailable | The Gateway or an eligible upstream route could not serve the request. Retry only when appropriate for your application and preserve the diagnostic headers. |
-| Other `5xx` | Retry only when appropriate for your application. If the issue persists, share the status and request/correlation ID with support. The response alone does not guarantee the cause. |
+| `403` Forbidden | Check that the credential and organization are authorized for the requested model, capability, or operation. Ask an organization administrator to review effective access. |
+| `404` Not Found | Check the public endpoint path or the model ID used with a model lookup. Inference requests should use an ID returned by the credential-scoped model list. |
+| `413` Payload Too Large | Reduce the JSON request body. The current default inference request limit is 16 MiB; the response includes `x-conscia-max-request-body-bytes` with the active limit. |
+| `429` Too Many Requests | The organization rate, token, or budget limit was exceeded. Follow the returned retry guidance when present; do not assume a fixed limit or reset time. |
+| `502` Bad Gateway | Provider execution failed. Preserve the diagnostic headers and inspect the model's route and compatibility status before changing the request. |
+| `503` Service Unavailable | The Gateway, control plane, or eligible provider route is temporarily unavailable. Retry only when appropriate and preserve the diagnostic headers. |
+| `504` Gateway Timeout | The provider execution deadline was exceeded. Retry according to your workload's policy and keep the request identifiers. |
+| Other `5xx` | Retry only when appropriate. If the issue persists, share the status and request/correlation ID with support. The response alone does not guarantee the cause. |
+
+The Developer Portal's common error guidance includes `INVALID_API_KEY`, `API_KEY_REVOKED`, `API_KEY_EXPIRED`, `MODEL_NOT_ALLOWED`, `CAPABILITY_NOT_ALLOWED`, `RATE_LIMIT_EXCEEDED`, `BUDGET_EXCEEDED`, `PROVIDER_UNAVAILABLE`, and `REQUEST_MALFORMED`. Use the error code as a starting point, then confirm the current credential, model, policy, allowance, and route state.
+
+## Diagnose common request failures
+
+| Symptom | Likely cause | Next action |
+| --- | --- | --- |
+| The model is absent from `GET /v1/models` | The credential cannot access it, or it is not currently available. | Use the same credential to list models, then ask an administrator to review access if needed. |
+| The model is listed but a harness reports it as unavailable | The harness transport, capability, route profile, or qualification status does not match. | Read [model compatibility](/gateway/model-compatibility/) and the relevant harness guide. |
+| A request feature returns `400` | The selected model or transport does not support the feature. | Remove the feature or choose a model with the required capability; do not assume another provider route will add it. |
+| A request reaches the Gateway but is denied | Effective model access, capability, allowance, or rate policy rejected it. | Review [access and allowances](/gateway/access-and-allowances/) and the request's sanitized diagnostic details. |
+| A model has no usable route | The route is inactive, unqualified, unavailable, outside the processing boundary, or incompletely priced. | Ask an organization administrator or platform operator to review model readiness; changing the provider-native model ID is not a caller fix. |
 
 ## Find request and correlation IDs
 
@@ -22,6 +45,17 @@ Record the `x-request-id` and `x-correlation-id` response headers, when present,
 
 For harness-level session and activity identifiers, see [Correlate usage by activity](/gateway/integrations/activity-correlation/). Do not use request IDs, prompts, credentials, or personal data as activity identifiers.
 
+Developers can open a request from Developer Portal → **Usage** or paste its request ID into **Troubleshooting**. The personal lookup is scoped to requests attributed to the current organization membership. Organization administrators can inspect organization usage and open the raw request inside an activity group.
+
 ## Share diagnostics safely
 
-Never share API keys, prompts, request bodies, or other sensitive content with support. Share only the HTTP status, request or correlation ID, approximate timestamp, endpoint path, and a concise description of the observed behavior. Redact organization or user identifiers if they are not needed for diagnosis.
+Never share API keys, prompts, request bodies, cache keys, tool arguments, or other sensitive content with support. A safe support bundle contains:
+
+- HTTP status and Gateway error code;
+- `x-request-id` and `x-correlation-id`;
+- session ID and activity ID, if you intentionally configured them;
+- approximate timestamp and endpoint path;
+- public model ID and transport; and
+- a concise description of the observed behavior.
+
+Redact credential prefixes, email addresses, organization or user identifiers, provider request IDs, and any personal data that is not needed for diagnosis.

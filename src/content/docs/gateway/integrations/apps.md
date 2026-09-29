@@ -44,6 +44,23 @@ curl --fail-with-body --show-error --silent \
 
 Keep the credential on the server side. The Gateway authenticates the App, applies its effective model access and allowance, and records usage for the organization and application.
 
+You may send bounded attribution metadata when the service needs to distinguish product-owned work. Metadata is untrusted reporting data: it cannot override the authenticated organization, App, credential, environment, policy, model, route, or pricing. Use safe values such as feature or workflow slugs; never send prompts, credentials, secrets, or sensitive personal data.
+
+```json
+{
+  "model": "your-public-model-id",
+  "messages": [{ "role": "user", "content": "Say hello." }],
+  "metadata": {
+    "feature": "summarize",
+    "workflow": "support-case"
+  }
+}
+```
+
+App credentials may supply up to 32 custom string fields. Metadata keys are limited to 64 characters, values to 256 characters, and the serialized object to 8 KiB. Organization Usage can discover observed keys and filter or group by one key.
+
+For client diagnostics, send `X-Conscia-Client-Name` as a lowercase slug of at most 64 characters and optionally `X-Conscia-Client-Version` of at most 64 printable characters. These headers identify the calling product in usage views; they do not authenticate the request.
+
 ```sh
 curl --fail-with-body --show-error --silent \
   -X POST "${CONSCIA_BASE_URL:?Set CONSCIA_BASE_URL from Developer Portal Quickstart}/chat/completions" \
@@ -59,3 +76,5 @@ Use a public model ID returned by `GET /v1/models`. You can use `model: "auto"` 
 Organization administrators can rotate or revoke an application credential from the App. Rotation returns replacement secret material once, so update the deployment secret and roll the service. Revocation prevents the credential from authenticating. A disabled App also prevents its credentials from authenticating.
 
 Check the App's usage and last-used information after deployment. If a request fails, keep the `x-request-id` and `x-correlation-id` response headers for diagnosis. Never send the credential, prompts, or request bodies to support.
+
+See [Inspect Gateway usage](/gateway/usage/) for organization-level request, principal, App, environment, and attribution views.

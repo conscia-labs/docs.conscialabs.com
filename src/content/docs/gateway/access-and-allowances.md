@@ -17,7 +17,9 @@ Use a public model ID from the Developer Portal or `GET /v1/models`. Provider-na
 
 An allowance controls how much a user or App may consume. The Gateway can apply request, token, and estimated-cost allowances over minute, day, week, or month windows. The Developer Portal shows the allowance that applies to your personal credential and its reset time. Organization administrators manage organization and App governance.
 
-Each caller has one effective allowance. A direct allowance takes precedence over a primary group allowance, which takes precedence over the organization default. A more specific setting can narrow capacity but cannot override organization guardrails.
+Each caller has one effective allowance. A direct allowance takes precedence over a primary group allowance, which takes precedence over the organization default. When several group allowances apply without a selected primary group, the most restrictive applicable group allowance is used. Credential settings can narrow capacity but cannot expand organization governance.
+
+Allowances can cover requests, tokens, and estimated cost over minute, day, week, or month windows. The Developer Portal shows the effective allowance, current usage, and reset time for a personal credential. Organization Administration can review the effective result for a person, group, App, or credential.
 
 Usage history remains available after an allowance resets. A reset starts a new active counter; it does not remove historical usage.
 
@@ -46,7 +48,10 @@ Use `model: "auto"` when the request and organization support Gateway-managed se
 ## When a request is denied or limited
 
 - `403` indicates that the credential is not authorized for the requested model, capability, or operation.
-- `402` indicates that an applicable budget or quota has been exceeded.
-- `429` indicates that an applicable rate limit has been exceeded.
+- `400` indicates that the request shape or requested capability is not supported by the selected transport, model, or effective limits.
+- `429` indicates that an applicable rate, token, budget, or quota limit has been exceeded.
+- `503` can indicate that the Gateway, control plane, or eligible provider route is temporarily unavailable.
 
 Review the model list, current allowance, and reset time in the Developer Portal. Ask an organization administrator to review the App, policy, or allowance when a service needs different access.
+
+See [Inspect Gateway usage](/gateway/usage/) for request history, activity groups, breakdowns, and pricing health.

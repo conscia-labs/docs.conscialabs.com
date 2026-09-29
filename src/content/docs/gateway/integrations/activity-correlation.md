@@ -30,9 +30,11 @@ The usage view can describe the quality of an activity relationship as:
 
 If credentials are shared, or several sessions run concurrently, give each process a distinct session identifier and each user-visible run a distinct activity identifier. Otherwise, attribution can be ambiguous even when the requests succeed.
 
+For product or service clients, you can also send `X-Conscia-Client-Name` and `X-Conscia-Client-Version` to make the calling client easier to filter in Usage. A client name must be a lowercase slug of at most 64 characters; the version is accepted only with a valid name and is also limited to 64 characters. These headers are diagnostic only.
+
 ## How activity groups appear
 
-Organization usage exposes grouped activities alongside the raw requests that contributed to them. The terms describe different levels of the same flow:
+Organization Administration → **Usage** exposes grouped activities alongside the raw requests that contributed to them. The Developer Portal → **Usage** view remains scoped to the current member's request history. The terms describe different levels of the same flow:
 
 | Level | What it represents |
 | --- | --- |
@@ -94,19 +96,23 @@ For a static session header, add the provider header to `opencode.jsonc`:
 Per-activity identifiers require an OpenCode plugin or wrapper. The following is illustrative: the surrounding integration supplies a safe activity ID for the current user-visible run, and the hook adds it to outgoing HTTP requests.
 
 ```ts
-const activityIdForCurrentRun = () => process.env.CONSCIA_ACTIVITY_ID;
+import { Plugin } from "@opencode/plugin";
 
-export const ConsciaActivityHeaders = async ({ session }) => {
-  await session.hook("http.request", (event) => {
-    const activityId = activityIdForCurrentRun();
-    if (activityId) {
-      event.request.headers.set("X-Conscia-Activity-Id", activityId);
-    }
-  });
-};
+let currentActivityId: string | undefined;
+
+export default Plugin.define({
+  id: "conscia-activity-headers",
+  async setup(ctx) {
+    await ctx.session.hook("http.request", (event) => {
+      if (currentActivityId) {
+        event.request.headers.set("X-Conscia-Activity-Id", currentActivityId);
+      }
+    }, { providerID: "conscia" });
+  },
+});
 ```
 
-Update `CONSCIA_ACTIVITY_ID` at the boundary of each user-visible run. `event.sessionID` is a session-level value; do not automatically treat it as a per-turn activity ID unless the integration intentionally defines it that way. See OpenCode's [plugin hook documentation](https://opencode.ai/v2/docs/build/plugins) and [provider header documentation](https://opencode.ai/v2/docs/providers/) for the current hook and configuration shapes.
+The surrounding wrapper must update `currentActivityId` at the boundary of each user-visible run. `event.sessionID` is a session-level value; do not automatically treat it as a per-turn activity ID unless the integration intentionally defines it that way. See OpenCode's [plugin hook documentation](https://opencode.ai/v2/docs/build/plugins) and [provider header documentation](https://opencode.ai/v2/docs/providers/) for the current hook and configuration shapes.
 
 ## Troubleshoot and operate safely
 
@@ -117,4 +123,4 @@ Update `CONSCIA_ACTIVITY_ID` at the boundary of each user-visible run. `event.se
 - If multiple users share one credential, principal-scoped grouping still applies, but explicit identifiers are strongly recommended so concurrent work is distinguishable.
 - When contacting support, provide the `x-request-id` and `x-correlation-id` response headers, the session ID, the activity ID, the approximate time, and the endpoint path. Redact credentials, prompt text, request bodies, personal data, and other secrets.
 
-For general request diagnosis, see [Troubleshoot AI Gateway requests](/gateway/troubleshooting/). For usage, access, and allowance context, see [Understand model access and allowances](/gateway/access-and-allowances/).
+For a complete usage investigation workflow, see [Inspect Gateway usage](/gateway/usage/). For general request diagnosis, see [Troubleshoot AI Gateway requests](/gateway/troubleshooting/). For usage, access, and allowance context, see [Understand model access and allowances](/gateway/access-and-allowances/).

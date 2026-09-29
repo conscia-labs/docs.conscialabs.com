@@ -3,11 +3,11 @@ title: Curate available models
 description: Review organization models and choose preferred and fallback routes without managing provider infrastructure.
 ---
 
-Organization Administration presents AI Models as the customer-facing unit of access. The **AI Models** page shows the models available to the organization, their public IDs, capabilities, availability, usage, rates, and safe provider information.
+Organization Administration presents AI Models as the customer-facing unit of access. The **AI Models** page shows the models available to the organization, their public IDs, capabilities, availability, usage, rates, transport compatibility, and safe provider information.
 
 ## Review the model catalogue
 
-Use the filters to find models that are enabled, recommended, available through multiple providers, or require attention. A model needs an eligible primary route to be available for requests.
+Use the filters to find models that are enabled, recommended, available through multiple providers, or require attention. A model needs an eligible primary route, a supported public transport, complete customer pricing, and the required processing-boundary review to be available for requests.
 
 The platform catalogue is curated by Platform Administration. A model discovered or present in the catalogue is not automatically available to every organization. Model Access policies determine which people, groups, Apps, or API keys can use an organization model.
 
@@ -20,7 +20,7 @@ Open a model's operational view to choose:
 
 The preferred route is used when eligible. The configured fallback is the only alternate route for that model when a retryable failure occurs before output begins. Route preferences do not select a different model.
 
-Organization Admins cannot assign provider configurations, activate provider infrastructure, change native provider targets, manage provider credentials, or change pricing. Those controls belong to Platform Administration.
+Organization Admins cannot assign provider configurations, activate provider infrastructure, change native provider targets, manage provider credentials, or change pricing. Those controls belong to Platform Administration. If a model is visible but unavailable, inspect its availability, transport, capability, route, pricing, and processing status before changing an organization policy.
 
 ## Keep public model IDs stable
 

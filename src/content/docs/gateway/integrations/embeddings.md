@@ -1,13 +1,13 @@
 ---
 title: Create text embeddings
-description: Use the OpenAI-compatible embeddings endpoint when your organization has enabled embeddings.
+description: Create vectors with the OpenAI-compatible embeddings endpoint when your organization enables it.
 ---
 
-AI Gateway exposes synchronous text embeddings at `POST /v1/embeddings`. The Gateway returns vectors but does not store them or provide chunking, vector search, retrieval, or RAG orchestration. Those responsibilities remain with your application.
+AI Gateway provides synchronous text embeddings at `POST /v1/embeddings`. Gateway returns vectors but does not store them or provide chunking, vector search, retrieval, or RAG orchestration. Your application handles those responsibilities.
 
 ## Before you start
 
-Embeddings require all of the following:
+Before you send a request, confirm all of the following:
 
 1. Your organization has the Embeddings feature enabled.
 2. Your effective policy allows the Embeddings operation.
@@ -18,7 +18,7 @@ The feature and model grant are separate. Enabling the operation does not grant 
 
 ## Send an embedding request
 
-Use the OpenAI-compatible base URL from Developer Portal → **Quickstart**. Use `model: "auto"` when your policy provides an automatic embedding model, or use an accessible public embedding model ID:
+Use the OpenAI-compatible base URL from Developer Portal → **Quickstart**. Choose `model: "auto"` when your policy provides an automatic embedding model, or provide an accessible public embedding model ID:
 
 ```sh
 curl --fail-with-body --show-error --silent \
@@ -31,12 +31,12 @@ curl --fail-with-body --show-error --silent \
   }'
 ```
 
-The current v1 provider baseline is Amazon Bedrock Titan Text Embeddings V2. Confirm the available public model and dimensions in the Developer Portal because organization access and route availability are credential-scoped.
+The v1 provider baseline is Amazon Bedrock Titan Text Embeddings V2. Confirm the available public model and dimensions in the Developer Portal because organization access and route availability are scoped to the credential.
 
-Supported input is a string or string array. The current contract returns float vectors and supports dimensions `256`, `512`, or `1024` when the selected model and route support them. Vector storage and retrieval are outside the Gateway contract.
+Input can be a string or string array. The current contract returns float vectors and supports dimensions `256`, `512`, or `1024` when the selected model and route support them. Vector storage and retrieval are outside the Gateway contract.
 
 ## Usage and errors
 
-Embedding usage is recorded separately from chat or response inference. A request can be denied when the operation is disabled, the model is not allowed, the route is not priced, or an allowance or rate limit is exceeded.
+Gateway records embedding usage separately from chat or response inference. A request can be denied when the operation is disabled, the model is not allowed, the route is not priced, or an allowance or rate limit is exceeded.
 
 Keep `x-request-id` and `x-correlation-id` for diagnosis. See [Troubleshoot AI Gateway requests](/gateway/troubleshooting/) before escalating. Do not send API keys, input text, or vectors to support.

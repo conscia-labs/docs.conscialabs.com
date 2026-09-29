@@ -1,21 +1,21 @@
 ---
 title: Use OpenCode with AI Gateway
-description: Configure OpenCode to use Conscia AI Gateway through the OpenAI Responses transport.
+description: Set up OpenCode with Conscia AI Gateway through the OpenAI Responses transport.
 ---
 
-OpenCode can use Conscia AI Gateway through the OpenAI Responses transport. The Gateway remains responsible for credential validation, effective policy, model selection, provider routing, and usage recording. OpenCode remains responsible for executing tools locally.
+OpenCode connects to Conscia AI Gateway through the OpenAI Responses transport. Gateway handles credential validation, effective policy, model selection, provider routing, and usage recording. OpenCode executes tools locally.
 
-Use a personal credential for direct developer use or an [application credential](/gateway/integrations/apps/) for a service runtime. Do not put an OpenAI or other upstream-provider credential in this configuration.
+Use a personal credential for direct developer use or an [application credential](/gateway/integrations/apps/) for a service runtime. Keep OpenAI and other upstream-provider credentials out of this configuration.
 
 ## Configure the credential
 
-Store the Conscia secret in OpenCode's environment service:
+Store the Conscia secret in OpenCode’s environment service:
 
 ```sh
 opencode service set env CONSCIA_API_KEY
 ```
 
-Enter the credential when prompted. Do not commit it to `opencode.jsonc`, source control, or support logs.
+Enter the credential when prompted. Keep it out of `opencode.jsonc`, source control, and support logs.
 
 ## Configure OpenCode
 
@@ -44,11 +44,11 @@ Save this configuration globally at `~/.config/opencode/opencode.jsonc` or local
 }
 ```
 
-This is the current OpenCode v2.0.12 configuration baseline. Use the Developer Portal's generated example when it differs from this version. The Responses transport is the maintained configuration because it preserves portable reasoning continuation and tool-call events.
+This example matches the OpenCode v2.0.12 configuration baseline. If the Developer Portal generates a different example, use that one. The Responses transport preserves portable reasoning continuation and tool-call events.
 
 Use only the public model ID returned by `GET /v1/models` or shown in the Developer Portal. Provider-native IDs, provider prefixes, slash-qualified IDs, and aliases are not valid `modelID` values.
 
-For current provider configuration fields, see OpenCode's [provider documentation](https://opencode.ai/v2/docs/providers/).
+For current provider configuration fields, see OpenCode’s [provider documentation](https://opencode.ai/v2/docs/providers/).
 
 ## Add usage correlation
 
@@ -87,22 +87,22 @@ export default Plugin.define({
 });
 ```
 
-`event.sessionID` is a session-level value. Do not automatically use it as a per-turn activity ID unless the integration intentionally defines the OpenCode session as its activity boundary. See [Correlate usage by activity](/gateway/integrations/activity-correlation/) and OpenCode's [plugin hook documentation](https://opencode.ai/v2/docs/build/plugins).
+`event.sessionID` is a session-level value. Do not use it as a per-turn activity ID unless the integration intentionally defines the OpenCode session as its activity boundary. See [Group usage by activity](/gateway/integrations/activity-correlation/) and OpenCode’s [plugin hook documentation](https://opencode.ai/v2/docs/build/plugins).
 
 ## Supported behavior and cache keys
 
-The Gateway supports text requests, streaming, client-side function tools, and qualified reasoning continuation through the Responses transport. The Gateway does not execute tools or retain pending tool calls; OpenCode must execute a requested tool and send the result in a later stateless request.
+The Responses transport supports text requests, streaming, client-side function tools, and qualified reasoning continuation. Gateway does not execute tools or retain pending tool calls; OpenCode must execute a requested tool and send the result in a later stateless request.
 
-OpenCode may send `prompt_cache_key` and `store: false`. The Gateway treats the cache key as an optional cache-affinity hint, derives an opaque organization/principal/model-scoped value before provider forwarding, and does not use it as identity, authorization, attribution, response storage, or a durable cache-hit guarantee. The Gateway does not store responses, and `store: true` is unsupported.
+OpenCode may send `prompt_cache_key` and `store: false`. Gateway treats the cache key as an optional cache-affinity hint, derives an opaque organization/principal/model-scoped value before forwarding it to a provider, and does not use it as identity, authorization, attribution, response storage, or a durable cache-hit guarantee. Gateway does not store responses, and `store: true` is unsupported.
 
 ## Troubleshoot OpenCode
 
 | Symptom | Check |
 | --- | --- |
-| `Cannot find package '@opencode/ai'` | Confirm the configured OpenCode release bundles the package path shown above. |
+| `Cannot find package '@opencode/ai'` | Check that the configured OpenCode release bundles the package path shown above. |
 | The provider appears but the model does not | Check that the top-level model is `conscia/gateway-model` and that `modelID` is the exact public Conscia ID. |
-| `401` | Re-run the environment-service command after rotating the credential and confirm the service can read `CONSCIA_API_KEY`. |
-| `403` | Confirm the public model is available through the credential's effective policy. |
+| `401` | Re-run the environment-service command after rotating the credential and check that the service can read `CONSCIA_API_KEY`. |
+| `403` | Check that the public model is available through the credential’s effective policy. |
 | `400` for `prompt_cache_key` or `store` | The Gateway deployment may predate OpenCode compatibility support; check the deployed Gateway version. |
 | `503` | Check model route readiness and retry only when the route is available. |
 

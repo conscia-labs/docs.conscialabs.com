@@ -1,9 +1,9 @@
 ---
 title: Configure the Model Router
-description: Configure organization rules for Gateway-managed model selection.
+description: Set organization rules for Gateway-managed model selection.
 ---
 
-The Model Router controls `model: "auto"` for the organization. It uses an ordered rulebook to answer: which eligible public model should handle this request for this person or App?
+The Model Router controls `model: "auto"` for the organization. Its ordered rulebook chooses an eligible public model for each request, person, or App.
 
 ## Configure the rulebook
 
@@ -14,22 +14,22 @@ The Model Router controls `model: "auto"` for the organization. It uses an order
 5. Select **which AI Model** should handle a match, or choose automatic selection from eligible public models.
 6. Test the rulebook and review the catch-all rule before enabling changes.
 
-The first matching enabled rule wins. Rules can narrow or prioritize eligible models, but they cannot grant model access, bypass a credential restriction, or override an allowance.
+The first enabled rule that matches wins. Rules can narrow or prioritize eligible models, but they cannot grant model access, bypass a credential restriction, or override an allowance.
 
 ## Keep a catch-all rule
 
-An enabled rulebook has one catch-all rule. It is evaluated last and selects either a specific public model or automatic selection from eligible public models. It cannot be disabled or moved while the router is enabled.
+An enabled rulebook has one catch-all rule. Evaluated last, it selects either a specific public model or automatic selection from eligible public models. You cannot disable or move it while the router is enabled.
 
-If the selected model has no eligible route, the Gateway returns a no-route denial. The router does not switch to a different model because a route is unavailable.
+If the selected model has no eligible route, Gateway returns a no-route denial. The router does not switch to a different model because a route is unavailable.
 
 ## Simple and Advanced modes
 
 Simple mode uses authenticated subject context and Gateway-derived request facts. It does not interpret prompt content before routing.
 
-Advanced mode can use interpreted request attributes such as intent, domain, complexity, reasoning need, and expected output. It adds a separate interpretation request with its own latency and cost. Treat Advanced mode as Preview until the organization has approved its data boundary and operating behavior. Callers can opt down to Simple mode, but they cannot enable Advanced mode for the organization from an API request.
+Advanced mode can use interpreted request attributes such as intent, domain, complexity, reasoning need, and expected output. It adds a separate interpretation request with its own latency and cost. Treat Advanced mode as Preview until the organization approves its data boundary and operating behavior. Callers can opt down to Simple mode, but an API request cannot enable Advanced mode for the organization.
 
 ## Keep model and provider decisions separate
 
-The Model Router selects a public AI Model. Preferred and fallback provider routes are configured on that model's operational page. Do not add provider names, provider-native IDs, provider credentials, or route identifiers to router rules.
+The Model Router selects a public AI Model. Configure preferred and fallback provider routes on that model’s operational page. Keep provider names, provider-native IDs, provider credentials, and route identifiers out of router rules.
 
 Use the rule tester and diagnostics to review matched, skipped, disabled, unavailable, and winning rules. Confirm that the selected model remains available under current Model Access policies and allowances.

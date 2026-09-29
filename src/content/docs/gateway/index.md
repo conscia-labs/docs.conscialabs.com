@@ -1,10 +1,10 @@
 ---
 title: AI Gateway documentation
-description: Build with Conscia AI Gateway using public model IDs and Conscia-issued credentials.
+description: Access AI models through Conscia AI Gateway with public model IDs and Conscia-issued credentials.
 template: splash
 hero:
   title: AI Gateway
-  tagline: An enterprise AI gateway for secure, governed, observable model access.
+  tagline: Access AI models with organization policies and clear usage records.
   actions:
     - text: Get started
       link: /gateway/get-started/
@@ -17,24 +17,24 @@ hero:
 
 ## Get started
 
-[Make your first AI Gateway request](/gateway/get-started/). The guide covers credentials, model discovery, and a first request.
+[Make your first AI Gateway request](/gateway/get-started/). You’ll save a credential, find an accessible model, and send a request.
 
-If you use a coding assistant, start with [Codex](/gateway/integrations/codex/), [Claude Code](/gateway/integrations/claude-code/), or [OpenCode](/gateway/integrations/opencode/).
+For coding assistants, choose the guide for [Codex](/gateway/integrations/codex/), [Claude Code](/gateway/integrations/claude-code/), or [OpenCode](/gateway/integrations/opencode/).
 
 ## Concepts
 
 - [Authenticate with a Conscia credential](/gateway/authentication/)
-- [Choose an accessible model](/gateway/models/)
-- [Understand model compatibility](/gateway/model-compatibility/)
+- [Choose a model](/gateway/models/)
+- [Check model compatibility](/gateway/model-compatibility/)
 - [Understand model access and allowances](/gateway/access-and-allowances/)
 
 ## Integrations
 
-[Connect a client to AI Gateway](/gateway/integrations/) with the OpenAI-compatible or Anthropic-compatible surface. You can also [create text embeddings](/gateway/integrations/embeddings/), [connect an App](/gateway/integrations/apps/), and [correlate usage by activity](/gateway/integrations/activity-correlation/).
+[Connect a client to AI Gateway](/gateway/integrations/) through the OpenAI-compatible or Anthropic-compatible surface. The integrations section also covers [text embeddings](/gateway/integrations/embeddings/), [Apps](/gateway/integrations/apps/), and [activity-based usage correlation](/gateway/integrations/activity-correlation/).
 
 ## Operate
 
-[Inspect Gateway usage](/gateway/usage/) and [troubleshoot a request](/gateway/troubleshooting/) using request history, activity groups, status guidance, and safe diagnostic details.
+[Inspect Gateway usage](/gateway/usage/) and [troubleshoot requests](/gateway/troubleshooting/) with request history, activity groups, status guidance, and safe diagnostic details.
 
 ## Organization Admin
 

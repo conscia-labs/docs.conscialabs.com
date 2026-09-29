@@ -1,11 +1,11 @@
 ---
 title: Inspect Gateway usage
-description: Read personal and organization usage, investigate requests, and understand activity and pricing records.
+description: Review personal and organization usage, investigate requests, and inspect activity and pricing records.
 ---
 
-Usage is an operational view of what the Gateway recorded. It helps developers answer “what happened to my request?” and helps organization administrators answer “where is our usage going, what failed, and what needs attention?”
+Usage is the operational record of what Gateway received and processed. Developers can inspect individual requests; organization administrators can review volume, failures, activity, and pricing.
 
-Raw Gateway usage events are authoritative for customer usage attribution. Summaries, breakdowns, and activity groups are read-model views derived from those events.
+Raw Gateway usage events are authoritative for customer usage attribution. Summaries, breakdowns, and activity groups are views derived from those events.
 
 ## Choose the right view
 
@@ -15,11 +15,11 @@ Raw Gateway usage events are authoritative for customer usage attribution. Summa
 | Organization Administration → **Usage** | Organization-wide overview, breakdowns, raw requests, activity groups, and pricing health. | Organization administrators with usage access. |
 | Developer Portal → **AI Models** → a model → **Usage & pricing** | Usage and pricing context for one accessible model. | The current organization member. |
 
-The exact data available depends on your organization role, credential, and effective permissions.
+The data available to you depends on your organization role, credential, and effective permissions.
 
 ## Read the organization Usage page
 
-Organization Usage has five operational views:
+Organization Usage has five views:
 
 - **Overview**: request volume, successful and failed work, tokens, attributed cost, and daily token activity for the selected period.
 - **Breakdown**: compare requests, outcomes, tokens, and attributed cost by a dimension such as AI Model, provider, principal, member, API key, App, operation, environment, or status.
@@ -27,11 +27,11 @@ Organization Usage has five operational views:
 - **Activities**: inspect grouped requests from one user-visible activity or harness session. Open the group to review the raw requests inside it.
 - **Pricing health**: find requests with incomplete or missing price attribution. These requests are not silently presented as fully priced.
 
-Use a bounded date range when investigating a large period. Start with the overview, narrow the breakdown, then open a raw request or activity group for evidence.
+Use a bounded date range when investigating a large period. Start with the overview, narrow the breakdown, then open a raw request or activity group to inspect the evidence.
 
 ## Understand a raw usage event
 
-A raw request record can include:
+A raw request record may include:
 
 - request ID and occurrence time;
 - authenticated principal, credential, App, and environment;
@@ -43,11 +43,11 @@ A raw request record can include:
 - input, output, cached, cache-write, reasoning, image, or embedding units; and
 - cost, pricing status, and whether the amount is estimated.
 
-Usage views may include sanitized operational context for diagnosis, but provider-native model IDs and internal route identifiers are not caller configuration values. Usage metadata is sanitized and does not include prompts, responses, credentials, or raw provider errors by default.
+Usage views may include sanitized operational context for diagnosis. Provider-native model IDs and internal route identifiers are not caller configuration values. By default, usage metadata does not include prompts, responses, credentials, or raw provider errors.
 
 ## Understand activity groups
 
-An activity group is a convenience view that places related raw requests together:
+An activity group places related raw requests together:
 
 ```text
 authenticated principal
@@ -58,19 +58,19 @@ authenticated principal
                 └── raw request
 ```
 
-Activity groups are principal-scoped. The same activity string sent by two different members or Apps does not merge their usage. Explicit `X-Conscia-Activity-Id` metadata produces an **Exact** relationship; a session or safe run attribution can produce **Linked**; a request without usable correlation metadata may appear as **Estimated**. See [Correlate usage by activity](/gateway/integrations/activity-correlation/) for client configuration.
+Activity groups are scoped to a principal. The same activity string sent by two different members or Apps does not merge their usage. Explicit `X-Conscia-Activity-Id` metadata produces an **Exact** relationship; a session or safe run attribution can produce **Linked**; a request without usable correlation metadata may appear as **Estimated**. See [Group usage by activity](/gateway/integrations/activity-correlation/) for client configuration.
 
-If a group looks wrong, inspect its raw requests. Do not treat a group as a replacement for the authoritative events.
+If a group looks wrong, inspect its raw requests. The group is not a replacement for the authoritative events.
 
 ## Understand pricing health
 
-Usage cost can be:
+Usage cost has one of these states:
 
 - **Priced**: the request has complete attributable pricing.
 - **Partial**: some pricing coverage exists, but the record is not fully priced.
 - **Unpriced**: the request has no attributable customer cost.
 
-Pricing health is an operational signal. A request with incomplete pricing should be investigated rather than treated as a zero-cost request. Provider spend and customer billable cost are separate measurements; a provider attempt can be recorded even when a customer charge is not complete.
+Pricing health is an operational signal. Investigate a request with incomplete pricing instead of treating it as zero cost. Provider spend and customer billable cost are separate measurements; a provider attempt can be recorded even when the customer charge is incomplete.
 
 ## Investigate a failed request
 
@@ -81,7 +81,7 @@ Pricing health is an operational signal. A request with incomplete pricing shoul
 5. If several raw requests belong to one turn, open the corresponding activity group.
 6. Preserve `x-request-id` and `x-correlation-id` when contacting support.
 
-Do not include API keys, prompts, request bodies, cache keys, email addresses, or personal data in a support bundle. See [Troubleshoot AI Gateway requests](/gateway/troubleshooting/) for the safe diagnostic checklist.
+Keep API keys, prompts, request bodies, cache keys, email addresses, and personal data out of a support bundle. See [Troubleshoot AI Gateway requests](/gateway/troubleshooting/) for the safe diagnostic checklist.
 
 ## Attribution is not authorization
 

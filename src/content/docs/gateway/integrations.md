@@ -1,9 +1,9 @@
 ---
 title: Connect a client to AI Gateway
-description: Configure compatible SDKs and coding tools to use Conscia AI Gateway.
+description: Set up compatible SDKs, coding tools, and services to use Conscia AI Gateway.
 ---
 
-The Gateway exposes OpenAI-compatible and Anthropic-compatible API surfaces. Use the transport that matches your client and the supported transport shown for the AI Model you intend to use.
+AI Gateway supports OpenAI-compatible and Anthropic-compatible API surfaces. Choose the transport your client expects, then check that the model supports it.
 
 | Client or workload | Recommended guide | Public transport |
 | --- | --- | --- |
@@ -13,22 +13,22 @@ The Gateway exposes OpenAI-compatible and Anthropic-compatible API surfaces. Use
 | Backend service or product runtime | [Connect an App](/gateway/integrations/apps/) | OpenAI Chat Completions, OpenAI Responses, or Anthropic Messages as supported by the model |
 | Embedding workload | [Create text embeddings](/gateway/integrations/embeddings/) | OpenAI Embeddings |
 
-Compatibility can vary by model and by the feature a client requests. Confirm the transport, model, and features your application needs against [model compatibility](/gateway/model-compatibility/) before deploying. The client names here do not imply complete compatibility or certification for every version or feature.
+Compatibility can vary by model and feature. Before deploying, check the transport, model, and features your application needs against [model compatibility](/gateway/model-compatibility/). The client names in this table do not imply complete compatibility or certification for every version or feature.
 
 ## Base URLs
 
-Copy the base URL for your platform from **Quickstart** in the Developer Portal. Platform hosts use the `*.ai.conscialabs.com` domain and may differ between platforms.
+Copy your platform’s base URL from **Quickstart** in the Developer Portal. Platform hosts use the `*.ai.conscialabs.com` domain, and the hostname may differ between platforms.
 
 - OpenAI-compatible clients: `https://<platform>.ai.conscialabs.com/v1`
 - Anthropic-compatible clients: `https://<platform>.ai.conscialabs.com` (use the client's documented path and do not append `/v1` unless that client requires it)
 
-Use a Conscia-issued credential with Bearer authentication and an accessible public model ID. See [authentication](/gateway/authentication/), [model discovery](/gateway/models/), and [model compatibility](/gateway/model-compatibility/).
+Authenticate with a Conscia-issued credential and Bearer authentication, then choose a public model ID available to that credential. See [authentication](/gateway/authentication/), [model discovery](/gateway/models/), and [model compatibility](/gateway/model-compatibility/).
 
-For a backend service or product runtime, follow [Connect an App](/gateway/integrations/apps/). Organization administrators create the App and its application credential; the service uses that credential for Gateway requests.
+For a backend service or product runtime, follow [Connect an App](/gateway/integrations/apps/). An organization administrator creates the App and application credential; the service uses that credential for Gateway requests.
 
 ## Client attribution headers
 
-Clients may send optional diagnostic headers:
+Clients may send these optional diagnostic headers:
 
 | Header | Rules |
 | --- | --- |
@@ -37,11 +37,11 @@ Clients may send optional diagnostic headers:
 | `X-Conscia-Session-Id` | Stable harness-session value; maximum 128 characters and limited to `A-Za-z0-9._:-`. |
 | `X-Conscia-Activity-Id` | User-visible turn or run value; maximum 128 characters and limited to `A-Za-z0-9._:-`. |
 
-These values are untrusted diagnostic metadata. They do not authenticate the caller or change model access, routing, policy, allowances, rate limits, pricing, or billing. See [Correlate usage by activity](/gateway/integrations/activity-correlation/) for session and activity boundaries.
+Treat these values as untrusted diagnostic metadata. They do not authenticate the caller or change model access, routing, policy, allowances, rate limits, pricing, or billing. See [Group usage by activity](/gateway/integrations/activity-correlation/) for session and activity boundaries.
 
 ## Tools and stateless continuation
 
-The Gateway passes supported client function-tool definitions, tool calls, and caller-supplied results through qualified transports. It does not execute tools, receive tool credentials, retain pending tool calls, or authorize tool side effects. The calling application or harness must execute tools locally, validate arguments, apply its own authorization, and send the result in a later request.
+Qualified transports pass supported function-tool definitions, tool calls, and caller-supplied results through the Gateway. The Gateway does not execute tools, receive tool credentials, retain pending tool calls, or authorize side effects. The calling application or harness must execute each tool locally, validate its arguments, apply its own authorization, and send the result in a later request.
 
 ## API paths
 
@@ -53,4 +53,4 @@ Public transport paths include:
 - `POST /v1/messages` and `POST /v1/messages/count_tokens` for the Anthropic Messages surface; and
 - `POST /v1/embeddings` for synchronous text embeddings.
 
-Which operations and request features work depends on the model, transport, and qualified route. Consult the [API reference](/gateway/api/) and the model detail in the Developer Portal before relying on a feature. The Anthropic Messages surface and Claude Code integration remain Preview in the current production capability envelope.
+Available operations and request features depend on the model, transport, and qualified route. Check the [API reference](/gateway/api/) and the model details in the Developer Portal before relying on a feature. The Anthropic Messages surface and Claude Code integration are still in Preview in the current production capability set.

@@ -1,6 +1,6 @@
 ---
 title: Onboard people to your organization
-description: Invite people, assign organization roles, and prepare their Gateway access.
+description: Invite people, assign organization roles, and prepare Gateway access.
 ---
 
 ## Invite a person
@@ -13,13 +13,13 @@ description: Invite people, assign organization roles, and prepare their Gateway
 
 The invitation email is queued for delivery and expires. If the address already belongs to a Conscia user, accepting the invitation connects that identity to the organization. Organization membership remains separate from any platform role.
 
-Use the lowest role that fits the person's responsibility:
+Choose the lowest role that fits the person’s responsibility:
 
 - **Owner** has full organization authority, including membership management.
 - **Admin** manages organization configuration and access without owner-only authority.
 - **Member** can use the AI capabilities granted through groups and policies.
 
-Grant Owner only to people responsible for organization governance and administrator access.
+Give Owner only to people responsible for organization governance and administrator access.
 
 ## Give a person access
 
@@ -31,4 +31,4 @@ After the invitation is accepted:
 4. Review the person's effective model access and allowance.
 5. Ask the person to create a personal API key in the Developer Portal when they need direct access.
 
-Removing a person ends organization access, revokes active personal API keys, removes group membership and direct policy assignments, and revokes pending invitations. The person's identity outside the organization is unchanged.
+Removing a person ends organization access, revokes active personal API keys, removes group membership and direct policy assignments, and revokes pending invitations. The person’s identity outside the organization is unchanged.

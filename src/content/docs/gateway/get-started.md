@@ -1,15 +1,15 @@
 ---
 title: Make your first AI Gateway request
-description: Store a Conscia API key, discover an accessible model, and send your first request.
+description: Save a Conscia credential, find an accessible model, and send a request.
 ---
 
-## Before you start
+## Before you begin
 
-You need a Conscia-issued personal credential for direct developer calls or an [application credential](/gateway/integrations/apps/) for a service. You also need an organization-accessible AI Model. Upstream provider credentials are not required and should not be configured.
+For direct developer calls, use a Conscia-issued personal credential. For a service, use an [application credential](/gateway/integrations/apps/). You also need an AI Model that your organization makes available. Do not configure an upstream provider credential.
 
 ## 1. Store your credential
 
-For a personal call, open Developer Portal → **API Keys**, create a key, and copy the secret when it is shown. For a service, follow [Connect an App](/gateway/integrations/apps/) and create an application credential. Secrets are displayed once. Store the value in an environment variable or a secret manager; never commit it or paste it into documentation, source control, or a shared terminal transcript.
+For a personal call, open Developer Portal → **API Keys**, create a key, and copy the secret when it appears. For a service, follow [Connect an App](/gateway/integrations/apps/) and create an application credential. Secrets appear once. Store the value in an environment variable or secret manager. Never commit it or paste it into documentation, source control, or a shared terminal transcript.
 
 ```sh
 export CONSCIA_API_KEY="your-conscia-api-key"
@@ -17,7 +17,7 @@ export CONSCIA_API_KEY="your-conscia-api-key"
 
 ## 2. Copy the Gateway URL
 
-Open **Quickstart** in the Developer Portal and copy the base URL for the API format you are using. Platform hosts use the `*.ai.conscialabs.com` domain, and the hostname can differ by platform. Do not invent a host or copy an upstream provider URL.
+Open **Quickstart** in the Developer Portal and copy the base URL for the API format you are using. Platform hosts use the `*.ai.conscialabs.com` domain, and the hostname may differ by platform. Use the displayed host; do not invent one or copy an upstream provider URL.
 
 For OpenAI-compatible requests, set the `/v1` base URL:
 
@@ -25,11 +25,11 @@ For OpenAI-compatible requests, set the `/v1` base URL:
 export CONSCIA_BASE_URL="https://your-platform.ai.conscialabs.com/v1"
 ```
 
-For Anthropic-compatible clients, use the Gateway origin shown by Quickstart and let the client add the documented versioned path. See [Connect a client](/gateway/integrations/) for the distinction.
+For Anthropic-compatible clients, use the Gateway origin shown in Quickstart and let the client add its documented versioned path. See [Connect a client](/gateway/integrations/) for the distinction.
 
 ## 3. Discover accessible models
 
-The model list is scoped to the credential making the request. Use the public `id` returned by this call in later requests:
+The model list is scoped to the credential making the request. Use the returned public `id` in later requests:
 
 ```sh
 curl --fail-with-body --show-error --silent \
@@ -37,13 +37,13 @@ curl --fail-with-body --show-error --silent \
   "${CONSCIA_BASE_URL:?Set CONSCIA_BASE_URL from Developer Portal Quickstart}/models"
 ```
 
-`--fail-with-body` makes HTTP error responses fail the command while retaining the response body for diagnosis.
+`--fail-with-body` makes HTTP errors fail the command while retaining the response body for diagnosis.
 
-Do not use provider-native model IDs, provider prefixes, aliases, or internal route IDs. Read [Choose an accessible model](/gateway/models/) and [Understand model compatibility](/gateway/model-compatibility/) if a model is visible in the catalog but unavailable for your client.
+Use only public model IDs. Provider-native IDs, provider prefixes, aliases, and internal route IDs are not valid here. Read [Choose a model](/gateway/models/) and [Check model compatibility](/gateway/model-compatibility/) when a model appears in the catalog but is unavailable to your client.
 
 ## 4. Send a first request
 
-Replace `your-public-model-id` with the exact public model ID returned by `GET /v1/models`. This first example uses OpenAI Chat Completions; use a transport-specific guide when your client needs Responses or Anthropic Messages.
+Replace `your-public-model-id` with the exact public model ID returned by `GET /v1/models`. This example uses OpenAI Chat Completions. Choose a transport-specific guide when your client needs Responses or Anthropic Messages.
 
 ### cURL
 
@@ -125,6 +125,6 @@ except URLError as error:
 
 ## 5. Verify the request
 
-Open **Usage** in the Developer Portal to confirm that the request appears in your personal history. Organization administrators can inspect the same request in Organization Administration → **Usage**, including its outcome, tokens, pricing status, and sanitized request diagnostics.
+Open **Usage** in the Developer Portal and confirm that the request appears in your personal history. Organization administrators can inspect the same request in Organization Administration → **Usage**, including its outcome, tokens, pricing status, and sanitized request diagnostics.
 
-If the request fails, keep the response status, `x-request-id`, `x-correlation-id`, approximate time, endpoint path, and public model ID. See [Troubleshoot AI Gateway requests](/gateway/troubleshooting/). Never send the credential, prompt, request body, or provider secret to support.
+If the request fails, record the response status, `x-request-id`, `x-correlation-id`, approximate time, endpoint path, and public model ID. See [Troubleshoot AI Gateway requests](/gateway/troubleshooting/). Never send the credential, prompt, request body, or provider secret to support.

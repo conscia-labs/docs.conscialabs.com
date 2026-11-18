@@ -1,6 +1,6 @@
 ---
 title: Conscia Labs Documentation
-description: Guides and references for Conscia Labs products, starting with AI Gateway.
+description: Guides and references for Conscia Labs products, including AI Gateway and Beacon.
 template: splash
 hero:
   title: Conscia Labs documentation
@@ -12,6 +12,9 @@ hero:
       variant: primary
     - text: Get started
       link: /gateway/get-started/
+      variant: minimal
+    - text: Explore Beacon
+      link: /beacon/
       variant: minimal
 ---
 
@@ -32,6 +35,24 @@ hero:
       <span>Integrations</span>
       <span>Operate</span>
       <span>Reference</span>
+    </div>
+  </section>
+  <section class="conscia-home__product" aria-labelledby="beacon-product-title">
+    <div class="conscia-home__product-copy">
+      <p class="conscia-home__kicker">Product documentation</p>
+      <h2 id="beacon-product-title">Beacon</h2>
+      <p>Use Beacon Work with local project folders, connect MCP services, and extend the app with Marketplace plugins.</p>
+      <div class="conscia-home__links">
+        <a class="conscia-home__primary-link" href="/beacon/">Open the Beacon docs <span aria-hidden="true">→</span></a>
+        <a href="/beacon/get-started/">Get started with Beacon Work</a>
+      </div>
+    </div>
+    <div class="conscia-home__product-index" aria-label="Beacon documentation sections">
+      <span>Get started</span>
+      <span>Projects</span>
+      <span>Connectors</span>
+      <span>Plugins</span>
+      <span>Build plugins</span>
     </div>
   </section>
 </div>

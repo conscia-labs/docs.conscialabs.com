@@ -15,6 +15,19 @@ export default defineConfig({
       sidebar: [
         { label: 'Documentation', link: '/' },
         { label: 'AI Gateway', link: '/gateway/' },
+        { label: 'Beacon', link: '/beacon/' },
+        { label: 'Use Beacon Work', items: [
+          { label: 'Get started', link: '/beacon/get-started/' },
+          { label: 'Projects and Workspaces', link: '/beacon/projects/' },
+          { label: 'Connectors', link: '/beacon/connectors/' },
+          { label: 'Plugins', link: '/beacon/plugins/' },
+        ] },
+        { label: 'Build Beacon plugins', items: [
+          { label: 'Plugin development', link: '/beacon/plugin-development/' },
+          { label: 'Skills', link: '/beacon/plugin-development/skills/' },
+          { label: 'MCP connectors', link: '/beacon/plugin-development/mcp-connectors/' },
+          { label: 'Sub-agents', link: '/beacon/plugin-development/sub-agents/' },
+        ] },
         { label: 'Start', items: [
           { label: 'AI Gateway overview', link: '/gateway/' },
           { label: 'Get started', link: '/gateway/get-started/' },

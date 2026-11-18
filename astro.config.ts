@@ -10,6 +10,7 @@ export default defineConfig({
       description: 'Product documentation for Conscia Labs.',
       favicon: '/favicon.svg',
       customCss: ['./src/styles/conscia.css'],
+      head: [{ tag: 'script', content: "document.documentElement.dataset.mood = 'airy';" }],
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/conscia-labs' }],
       editLink: { baseUrl: 'https://github.com/conscia-labs/docs.conscialabs.com/edit/main/' },
       sidebar: [

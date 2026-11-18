@@ -64,6 +64,36 @@
   --sl-color-blue-high: #d4f1f4;
 }
 
+:root[data-mood='airy'] {
+  --ds-space-page: 3.5rem;
+  --ds-radius-surface: 1.5rem;
+  --ds-radius-pill: 9999px;
+  --ds-radius-control: var(--ds-radius-pill);
+  --ds-page-title: 2.875rem;
+  --ds-section-title: 1.3125rem;
+
+  --sl-color-black: #fcfbfd;
+  --sl-color-bg: #fcfbfd;
+  --sl-color-bg-nav: #fcfbfd;
+  --sl-color-bg-sidebar: #fcfbfd;
+  --sl-border-radius: var(--ds-radius-surface);
+  --sl-content-pad-x: clamp(1.25rem, 3vw, 2.5rem);
+  --sl-content-gap-y: 1.25rem;
+  --sl-nav-height: 4.75rem;
+  --sl-nav-pad-x: clamp(1.25rem, 3vw, 2rem);
+  --sl-nav-pad-y: 0.875rem;
+  --sl-sidebar-pad-x: 1.2rem;
+  --sl-line-height: 1.72;
+  --sl-text-h1: clamp(var(--ds-page-title), 5vw, 3.5rem);
+}
+
+:root[data-mood='airy'][data-theme='dark'] {
+  --sl-color-black: #17191c;
+  --sl-color-bg: #17191c;
+  --sl-color-bg-nav: #17191c;
+  --sl-color-bg-sidebar: #17191c;
+}
+
 html { scroll-behavior: smooth; }
 body { font-family: var(--sl-font); -webkit-font-smoothing: antialiased; }
 a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #5965cc; outline-offset: 3px; }
@@ -126,6 +156,92 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   .conscia-home { gap: 2.7rem; margin-top: 1.5rem; }
   .conscia-home__product { grid-template-columns: 1fr; gap: 2rem; padding: 1.35rem; }
   .conscia-home__product-index { padding-top: 1.25rem; }
+}
+
+/* The Airy mood adapts its spacing and shapes to Starlight's components. */
+:root[data-mood='airy'] .sl-markdown-content h1 {
+  line-height: 1.12;
+}
+:root[data-mood='airy'] .hero {
+  padding-block: clamp(2.5rem, 6vw, var(--ds-space-page));
+}
+:root[data-mood='airy'] .hero h1 {
+  font-size: clamp(var(--ds-page-title), 5vw, 3.5rem);
+}
+:root[data-mood='airy'] .hero a.sl-link-button,
+:root[data-mood='airy'] .sl-markdown-content a.sl-link-button {
+  min-height: 3.5rem;
+  padding: 0.9rem 1.5rem;
+  border-radius: var(--ds-radius-control);
+  font-size: 0.95rem;
+}
+:root[data-mood='airy'] .sidebar-content a,
+:root[data-mood='airy'] .sidebar-content summary {
+  padding-block: 0.55em;
+  border-radius: var(--ds-radius-control);
+  line-height: 1.5;
+}
+:root[data-mood='airy'] site-search button[data-open-modal] {
+  min-height: 2.75rem;
+  padding-inline: 0.9rem;
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: var(--ds-radius-control);
+  background: color-mix(in srgb, var(--sl-color-accent-low) 35%, var(--sl-color-bg));
+}
+:root[data-mood='airy'] #starlight__search {
+  --sl-search-corners: 0.875rem;
+  --sl-search-result-spacing: calc(1.5rem * var(--pagefind-ui-scale));
+}
+:root[data-mood='airy'] #starlight__search .pagefind-ui__search-input {
+  padding-block: 0.8rem;
+  border-radius: var(--ds-radius-control);
+  background: var(--sl-color-gray-6);
+}
+:root[data-mood='airy'] .sl-markdown-content .card,
+:root[data-mood='airy'] .pagination-links a {
+  border-radius: var(--ds-radius-surface);
+}
+:root[data-mood='airy'] .pagination-links a {
+  padding: 1.25rem;
+}
+:root[data-mood='airy'] .sl-markdown-content pre {
+  border-radius: 1rem;
+}
+:root[data-mood='airy'] .conscia-home {
+  gap: clamp(2.5rem, 6vw, 5rem);
+  margin-top: clamp(2rem, 4vw, var(--ds-space-page));
+}
+:root[data-mood='airy'] .conscia-home h2 {
+  font-size: clamp(var(--ds-section-title), 3.8vw, 2.7rem);
+}
+:root[data-mood='airy'] .conscia-home__product h2 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+}
+:root[data-mood='airy'] .conscia-home__product {
+  gap: clamp(2rem, 6vw, 6rem);
+  padding: clamp(2rem, 4vw, var(--ds-space-page));
+  border-radius: var(--ds-radius-surface);
+}
+:root[data-mood='airy'] .conscia-home__links .conscia-home__primary-link {
+  min-height: 3.25rem;
+  padding: 0.85rem 1.35rem;
+  border-radius: var(--ds-radius-control);
+}
+:root[data-mood='airy'] .conscia-footer__inner {
+  padding-block: 1.75rem;
+}
+
+:root[data-mood='airy'][data-theme='dark'] .conscia-home__product {
+  background: color-mix(in srgb, var(--sl-color-accent-low) 58%, var(--sl-color-bg));
+}
+
+@media (max-width: 50rem) {
+  :root[data-mood='airy'] .hero { padding-block: 2rem; }
+  :root[data-mood='airy'] .conscia-home__product { gap: 2rem; padding: 1.75rem; }
+}
+
+@media (min-width: 50rem) {
+  :root[data-mood='airy'] #starlight__search dialog { border-radius: var(--ds-radius-surface); }
 }
 
 @media (prefers-reduced-motion: reduce) {

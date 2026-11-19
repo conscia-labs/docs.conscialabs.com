@@ -3,7 +3,7 @@ title: Build a sub-agent for Beacon Work
 description: Add an agents/<name>.agent.md specialist to a Beacon Work plugin.
 ---
 
-A sub-agent is a specialist that Beacon Work’s main agent can ask to handle a focused part of a task. Add one Markdown file per agent at `agents/<name>.agent.md` in your plugin.
+Use a sub-agent when a task benefits from a focused specialist—for example, reviewing a change for bugs or missing tests. Beacon Work’s main agent can delegate that focused work to an `agents/<name>.agent.md` instruction file in your plugin.
 
 ```text
 my-plugin/
@@ -32,4 +32,4 @@ Do not set `model` or other unsupported keys. Beacon runs the sub-agent on the t
 
 A sub-agent cannot expand the permissions of its thread. It inherits the thread’s mode, tool restrictions, and approvals. For example, a sub-agent in Discuss remains read-only, and listing `Write` or `Bash` in `tools` does not override the thread’s limits or approval prompts.
 
-For the rest of the plugin structure and Marketplace upload steps, see [Build a Beacon Work plugin](/beacon/plugin-development/).
+To package the full plugin and upload it to Marketplace, follow [Build a Beacon Work plugin](/beacon/plugin-development/).

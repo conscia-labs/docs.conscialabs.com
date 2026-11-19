@@ -5,6 +5,8 @@ description: Set up OpenCode with Conscia AI Gateway through the OpenAI Response
 
 OpenCode connects to Conscia AI Gateway through the OpenAI Responses transport. Gateway handles credential validation, effective policy, model selection, provider routing, and usage recording. OpenCode executes tools locally.
 
+Before you configure OpenCode, check that the model is available to your credential and supports Responses. Also check its OpenCode compatibility status. The [model compatibility guide](/gateway/model-compatibility/) explains each label.
+
 Use a personal credential for direct developer use or an [application credential](/gateway/integrations/apps/) for a service runtime. Keep OpenAI and other upstream-provider credentials out of this configuration.
 
 ## Configure the credential
@@ -50,6 +52,10 @@ Use only the public model ID returned by `GET /v1/models` or shown in the Develo
 
 For current provider configuration fields, see OpenCode’s [provider documentation](https://opencode.ai/v2/docs/providers/).
 
+## Check the connection
+
+In a test project, send OpenCode a short, non-sensitive prompt using the configured model. Then check the Usage view available to your role for the request and outcome. If it fails, save the request IDs and follow [Gateway troubleshooting](/gateway/troubleshooting/).
+
 ## Add usage correlation
 
 Static provider headers can carry a session identifier:
@@ -93,7 +99,7 @@ export default Plugin.define({
 
 The Responses transport supports text requests, streaming, client-side function tools, and qualified reasoning continuation. Gateway does not execute tools or retain pending tool calls; OpenCode must execute a requested tool and send the result in a later stateless request.
 
-OpenCode may send `prompt_cache_key` and `store: false`. Gateway treats the cache key as an optional cache-affinity hint, derives an opaque organization/principal/model-scoped value before forwarding it to a provider, and does not use it as identity, authorization, attribution, response storage, or a durable cache-hit guarantee. Gateway does not store responses, and `store: true` is unsupported.
+OpenCode may send `prompt_cache_key` and `store: false`. Gateway uses the key as an optional cache-affinity hint. Before forwarding it to a provider, Gateway derives an opaque value scoped to the organization, principal, and model. The key doesn’t identify or authorize a caller, change usage attribution, or guarantee a durable cache hit. Gateway doesn’t store responses and doesn’t support `store: true`.
 
 ## Troubleshoot OpenCode
 

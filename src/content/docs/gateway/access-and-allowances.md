@@ -15,37 +15,21 @@ Use a public model ID from the Developer Portal or `GET /v1/models`. Provider-na
 
 ## Allowances
 
-An allowance controls how much a user or App may consume. Gateway can apply request, token, and estimated-cost allowances over minute, day, week, or month windows. The Developer Portal shows the allowance for your personal credential and its reset time. Organization administrators manage organization and App governance.
+An allowance sets a usage limit for a user or App. It can cap requests, tokens, or estimated cost over time windows of a minute, a day, a week, or a month.
 
 Each caller has one effective allowance. A direct allowance takes precedence over a primary group allowance, which takes precedence over the organization default. If several group allowances apply and no primary group is selected, Gateway uses the most restrictive one. Credential settings can narrow capacity but cannot expand organization governance.
 
-Allowances can cover requests, tokens, and estimated cost over minute, day, week, or month windows. The Developer Portal shows the effective allowance, current usage, and reset time for a personal credential. Organization Administration shows the effective result for a person, group, App, or credential.
+The Developer Portal shows your personal credential’s effective allowance, current usage, and reset time. Organization Administration shows the effective allowance for a person, group, App, or credential.
 
 Usage history remains available after an allowance resets. A reset starts a new counter; it does not remove historical usage.
 
-For grouped usage from coding tools, see [Group usage by activity](/gateway/integrations/activity-correlation/). Activity groups are a convenience view; raw usage events remain authoritative.
+To group requests from coding tools, follow [Group usage by activity](/gateway/integrations/activity-correlation/). Activity groups are a convenience view; raw usage events remain authoritative.
 
-## Selecting a model
+## Access still applies after model selection
 
-Use an explicit public model ID when your application requires a specific model:
+Choose an ID from [model discovery](/gateway/models/) and check its client and transport fit in [model compatibility](/gateway/model-compatibility/). Gateway still evaluates access policies and allowances for each request; `model: "auto"` does not bypass them.
 
-```json
-{
-  "model": "your-public-model-id"
-}
-```
-
-Use `model: "auto"` when both the request and organization support Gateway-managed selection:
-
-```json
-{
-  "model": "auto"
-}
-```
-
-`auto` selects one eligible public model for the request. It does not bypass model access, capability restrictions, or allowances.
-
-## When a request is denied or limited
+## Diagnose a denied or limited request
 
 - `403` indicates that the credential is not authorized for the requested model, capability, or operation.
 - `400` indicates that the request shape or requested capability is not supported by the selected transport, model, or effective limits.
@@ -54,4 +38,4 @@ Use `model: "auto"` when both the request and organization support Gateway-manag
 
 Check the model list, current allowance, and reset time in the Developer Portal. Ask an organization administrator to review the App, policy, or allowance when a service needs different access.
 
-See [Inspect Gateway usage](/gateway/usage/) for request history, activity groups, breakdowns, and pricing health.
+Use [Inspect Gateway usage](/gateway/usage/) to review request history, activity groups, breakdowns, and pricing health.

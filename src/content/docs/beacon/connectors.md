@@ -28,10 +28,10 @@ Remote connectors support **None or OAuth**, **Bearer token**, and **Username an
 
 Open a connector’s card to review what it can do. You can turn off the whole connector or individual actions; an action that would otherwise run without asking can be set to **Always ask**. Beacon asks for approval before other connector tool calls. Review these choices before using the connector with a project.
 
-From a personal connector’s menu, you can edit or remove it, change its key, sign in again, disconnect it, or turn it off. Changing a remote server’s origin clears its saved sign-in. Removing a connector deletes its saved credentials. A change to connector settings takes effect from a thread’s next message.
+From a personal connector’s menu, you can edit or remove it, change its key, sign in again, disconnect it, or turn it off. Changing a remote server’s origin clears its saved sign-in. Removing a connector deletes its saved credentials. Changes take effect the next time the thread sends a message.
 
 ## Security: local connectors
 
-A local connector runs on your Mac **outside the thread sandbox**, with your user permissions. It can read files you can access and reach the network. Only add a local command when you trust its code and understand what it does. Do not put passwords, API keys, or other secrets in the command, its arguments, or the project files; enter credentials through Beacon’s sign-in flow instead.
+A local connector runs on your Mac **outside the thread sandbox** and uses your user permissions. It can read files you can access and reach the network. Add a local command only if you trust its code and know what it does. Don’t put passwords, API keys, or other secrets in the command, its arguments, or project files. Enter credentials through Beacon’s sign-in flow instead.
 
 For a packaged connector’s MCP configuration and permission declarations, see [Build an MCP connector](/beacon/plugin-development/mcp-connectors/).

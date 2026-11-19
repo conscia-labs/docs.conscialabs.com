@@ -58,7 +58,7 @@ authenticated principal
                 └── raw request
 ```
 
-Activity groups are scoped to a principal. The same activity string sent by two different members or Apps does not merge their usage. Explicit `X-Conscia-Activity-Id` metadata produces an **Exact** relationship; a session or safe run attribution can produce **Linked**; a request without usable correlation metadata may appear as **Estimated**. See [Group usage by activity](/gateway/integrations/activity-correlation/) for client configuration.
+Activity groups are scoped to a principal. If two members or Apps send the same activity string, their usage stays separate. An explicit `X-Conscia-Activity-Id` gives an **Exact** link. A session ID or safe run attribution can give a **Linked** one. Without usable correlation metadata, the view may show **Estimated**. To configure these IDs in a client, read [Group usage by activity](/gateway/integrations/activity-correlation/).
 
 If a group looks wrong, inspect its raw requests. The group is not a replacement for the authoritative events.
 

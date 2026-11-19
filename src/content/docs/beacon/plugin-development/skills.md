@@ -3,7 +3,7 @@ title: Build a skill for Beacon Work
 description: Write a SKILL.md with clear instructions and package it in a Beacon plugin.
 ---
 
-A skill is a folder of instructions and any supporting files they refer to. Beacon Work reads the skill description to decide when it applies, then makes its instructions available to the agent.
+Use a skill when you want Beacon Work’s agent to follow a repeatable workflow for matching tasks. A skill is a folder of instructions and supporting files; its description tells the agent when to apply them.
 
 ## Create the skill folder
 

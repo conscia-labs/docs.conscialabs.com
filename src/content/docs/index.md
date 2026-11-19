@@ -4,21 +4,15 @@ description: Guides and references for Conscia Labs products, including AI Gatew
 template: splash
 hero:
   title: Conscia Labs documentation
-  tagline: Guides and references for using, building, and managing Conscia Labs products
+  tagline: "Work on a local project with Beacon, or make model requests through AI Gateway."
   actions:
-    - text: Explore AI Gateway
-      link: /gateway/
+    - text: Explore products
+      link: '#product-guides'
       icon: right-arrow
       variant: primary
-    - text: Get started
-      link: /gateway/get-started/
-      variant: minimal
-    - text: Explore Beacon
-      link: /beacon/
-      variant: minimal
 ---
 
-<div class="conscia-home">
+<div class="conscia-home" id="product-guides">
   <section class="conscia-home__product" aria-labelledby="gateway-product-title">
     <div class="conscia-home__product-copy">
       <p class="conscia-home__kicker">Product documentation</p>

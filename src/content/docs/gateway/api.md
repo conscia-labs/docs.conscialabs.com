@@ -38,12 +38,6 @@ Anthropic Messages requests require `anthropic-version: 2023-06-01`. The Gateway
 
 ## Request limits and errors
 
-The default inference JSON body limit is currently 16 MiB. A `413` response includes `x-conscia-max-request-body-bytes` with the active limit. Public inference endpoints use status codes to distinguish malformed or unsupported requests (`400`), authentication (`401`), access (`403`), limits (`429`), provider execution failures (`502`), temporary unavailability (`503`), and provider deadlines (`504`).
+The default inference JSON body limit is currently 16 MiB. A `413` response includes `x-conscia-max-request-body-bytes` with the active limit. `400` means the request is malformed or unsupported. `401` means authentication failed; `403` means access was denied. `429` means a limit was reached. `502` signals a provider execution failure. `503` means the service is temporarily unavailable; `504` means the provider deadline elapsed.
 
-See [Troubleshoot AI Gateway requests](/gateway/troubleshooting/) for recovery guidance. A status code alone does not tell you how billing or provider execution behaved; inspect the returned error code and request diagnostics.
-
-## Contract maintenance
-
-The Gateway product repository is the source of truth. At this documentation update, its checked-in contract is `packages/contracts/openapi/ai-gateway.openapi.yaml` at commit `900f7f29a0c2f4cee8208fc3aa4dc538dc62fb76`. Integrate the generated API reference by consuming a versioned contract artifact or a reproducible export from that repository during the docs build. Keep the source, version, and generation process visible here and in CI. Do not maintain an untracked or manually copied OpenAPI file here.
-
-Until that generated reference is integrated, use the product contract for exact schemas, parameters, response formats, and feature compatibility.
+Use [Troubleshoot AI Gateway requests](/gateway/troubleshooting/) for recovery guidance. A status code alone doesn’t show how billing or provider execution behaved. Check the error code and request diagnostics.

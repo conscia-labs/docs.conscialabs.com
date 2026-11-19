@@ -3,9 +3,16 @@ title: Build an MCP connector for Beacon Work
 description: Declare a remote or local MCP server in a plugin and configure its authentication and tool approvals.
 ---
 
-A plugin connector is an MCP server that gives Beacon Work tools. Each connector must be declared in both `.mcp.json` and `beacon-plugin.json`; a connector listed in only one file is rejected.
+An MCP connector gives Beacon Work access to server tools. Declare each one in both `.mcp.json` and `beacon-plugin.json`. Beacon rejects the plugin if either file omits it.
 
-## Remote server
+## Choose a server type
+
+| Choose… | When… |
+| --- | --- |
+| A remote server | The MCP service is already reachable over a fixed HTTPS URL. Configure no authentication, a user-supplied API key, or the remote server’s OAuth flow. |
+| A local server | The plugin should include the server code and run it on the user’s Mac. Review its access carefully: local servers run outside the thread sandbox. |
+
+## Configure a remote server
 
 Use a fixed HTTPS URL and choose Streamable HTTP (`http`) or legacy SSE (`sse`) in `.mcp.json`:
 
@@ -37,7 +44,7 @@ Declare the connector and its tool permissions in `beacon-plugin.json`:
 
 `tools` must list every tool the server provides. `readTools` must be a subset and should contain only tools that cannot change or send data. A listed read-only tool can run without asking; other connector tool calls require approval. Users can turn off actions or make them always ask in **Customize → Connectors**.
 
-## Add user-supplied API keys
+### Add user-supplied API keys
 
 Do not put a real key or token in the plugin. Declare a field in `beacon-plugin.json`, then use its placeholder in `.mcp.json`:
 
@@ -70,6 +77,8 @@ Do not put a real key or token in the plugin. Declare a field in `beacon-plugin.
 
 The user enters the secret through Beacon Work’s connector flow. Beacon keeps it encrypted on that Mac and fills in the placeholder when a thread starts the connector. Each declared field must be used, and a connector’s header or environment value can contain at most one placeholder.
 
+### Use remote OAuth
+
 For a remote connector that supports OAuth, set `"auth": "oauth"` in `beacon-plugin.json`; do not set an `Authorization` header or an OAuth server in the plugin. Beacon opens the remote server’s sign-in flow when the user chooses **Connect**.
 
 ## Package a local server
@@ -91,7 +100,7 @@ Use a `.py` file with `python`, or a `.ts`, `.tsx`, `.js`, `.jsx`, `.mjs`, or `.
 
 **Security boundary:** local MCP servers run outside the thread sandbox with the user’s Mac permissions. They can read files available to that user and access the network. Keep the server small, review its behavior, and explain clearly what it accesses before sharing the plugin.
 
-## Local OAuth
+### Configure local OAuth
 
 A local server that needs OAuth must declare a public client ID, HTTPS authorization and token endpoints, and the required scopes in `beacon-plugin.json`:
 
@@ -127,7 +136,7 @@ Set `${OAUTH_TOKEN}` in the connector’s `env` in `.mcp.json`:
 }
 ```
 
-Register `http://127.0.0.1/callback` as the redirect URI for the public client. Beacon signs the user in, keeps the grant encrypted, and supplies a fresh access token to the local connector; never package a user’s refresh token or a client secret. For a remote OAuth server, use the remote flow described above instead. Local OAuth is advanced—test its browser sign-in with the target Beacon Work build.
+Register `http://127.0.0.1/callback` as the public client’s redirect URI. Beacon signs the user in and keeps the grant encrypted. It supplies a fresh access token to the local connector. Never include a user’s refresh token or a client secret in the plugin. For a remote OAuth server, use the remote flow above. Local OAuth is advanced. Test browser sign-in with the Beacon Work build you plan to use.
 
 ## Validate connector declarations
 

@@ -7,14 +7,16 @@ Codex connects to Conscia AI Gateway through the OpenAI Responses transport. Gat
 
 Use a personal credential for direct calls. Use an [application credential](/gateway/integrations/apps/) when a service or deployed runtime calls Gateway.
 
-## Before you start
+## Check compatibility first
 
-Before you begin, make sure you have:
+Before you configure Codex, inspect the model in Developer Portal → **AI Models**. For production, choose a model with an OpenAI Responses transport and Codex status **Supported**. See [model compatibility](/gateway/model-compatibility/) for what the status means.
+
+You need:
 
 - a Conscia-issued credential;
 - the Gateway base URL shown in Developer Portal → **Quickstart**;
-- an accessible AI Model with an OpenAI Responses transport; and
-- a Codex version whose compatibility status is shown in the Developer Portal for that model.
+- a model available to that credential; and
+- a Codex version listed in the model’s compatibility details.
 
 Do not configure an upstream provider credential. Gateway manages those credentials.
 
@@ -43,6 +45,10 @@ Use the Responses transport for Codex. It preserves Gateway’s supported tool e
 
 For the current Codex configuration format and precedence rules, see the [official Codex configuration reference](https://developers.openai.com/codex/config-reference/).
 
+## Try Codex with a test prompt
+
+Try Codex in a test project with a short, non-sensitive prompt. If it responds, look for the request and outcome in the Usage view available to your role. If the request fails, keep its IDs and use [Gateway troubleshooting](/gateway/troubleshooting/).
+
 ## Add usage correlation
 
 To group requests from one long-lived Codex process, add a stable session header:
@@ -53,16 +59,6 @@ http_headers = { "X-Conscia-Session-Id" = "codex-session-123" }
 ```
 
 Add `http_headers` to the same provider table as the session value. A wrapper that owns turn boundaries should add or update `X-Conscia-Activity-Id` for each user-visible run. See [Group usage by activity](/gateway/integrations/activity-correlation/) for identifier rules and the relationship to raw requests.
-
-## Check compatibility before choosing a model
-
-The Developer Portal shows a Codex status for each model:
-
-- **Supported** means the displayed Codex release passed Gateway conformance for the model's feature tier.
-- **Limited** means the transport is compatible, but the pinned Codex release has not completed the qualification gate, or the full agent feature set is not available.
-- **Unavailable** means the model is not accessible, is not declared for Responses, or has no qualified route profile.
-
-For production, choose a model marked **Supported**. A model can appear in the catalog and still be unavailable to the credential or transport you selected.
 
 ## Troubleshoot Codex requests
 

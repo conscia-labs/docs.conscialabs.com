@@ -3,7 +3,7 @@ title: Connect a client to AI Gateway
 description: Set up compatible SDKs, coding tools, and services to use Conscia AI Gateway.
 ---
 
-AI Gateway supports OpenAI-compatible and Anthropic-compatible API surfaces. Choose the transport your client expects, then check that the model supports it.
+AI Gateway offers OpenAI- and Anthropic-compatible APIs. Check that your model supports the transport your client expects. Then use the matching guide to configure your Conscia credential and public model ID. The guides cover client-specific limits and optional usage correlation.
 
 | Client or workload | Recommended guide | Public transport |
 | --- | --- | --- |
@@ -37,11 +37,11 @@ Clients may send these optional diagnostic headers:
 | `X-Conscia-Session-Id` | Stable harness-session value; maximum 128 characters and limited to `A-Za-z0-9._:-`. |
 | `X-Conscia-Activity-Id` | User-visible turn or run value; maximum 128 characters and limited to `A-Za-z0-9._:-`. |
 
-Treat these values as untrusted diagnostic metadata. They do not authenticate the caller or change model access, routing, policy, allowances, rate limits, pricing, or billing. See [Group usage by activity](/gateway/integrations/activity-correlation/) for session and activity boundaries.
+Treat these headers as untrusted. They don’t authenticate callers or change model access, routing, policy, allowances, rate limits, pricing, or billing. [Group usage by activity](/gateway/integrations/activity-correlation/) explains session and activity IDs.
 
 ## Tools and stateless continuation
 
-Qualified transports pass supported function-tool definitions, tool calls, and caller-supplied results through the Gateway. The Gateway does not execute tools, receive tool credentials, retain pending tool calls, or authorize side effects. The calling application or harness must execute each tool locally, validate its arguments, apply its own authorization, and send the result in a later request.
+On qualified transports, the Gateway passes supported function-tool definitions, calls, and caller-supplied results through to the client. It doesn’t execute tools, receive their credentials, retain pending calls, or authorize side effects. Your app or harness runs each tool locally. It must validate the arguments, apply its own authorization, and send the result in a later request.
 
 ## API paths
 

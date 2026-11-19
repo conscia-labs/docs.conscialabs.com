@@ -39,7 +39,7 @@ Treat **Limited** as a compatibility signal, not a promise that every client fea
 
 ## Public model IDs and `auto`
 
-Conscia selects provider-neutral public model IDs. Do not construct them from provider names, provider-native IDs, aliases, slash-qualified names, or internal route IDs.
+Use a public ID from your credential-scoped catalog. Don’t substitute a provider-native ID or internal route ID.
 
 Use an explicit public model ID when a workload requires a specific model. Use `model: "auto"` only on a supported transport when the organization has configured automatic selection. `auto` selects one eligible public model; it does not bypass model access, capability checks, allowances, route readiness, or pricing requirements.
 

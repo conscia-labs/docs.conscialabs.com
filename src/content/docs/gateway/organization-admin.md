@@ -13,6 +13,6 @@ Use Organization Administration to manage how your organization uses AI Gateway.
 - [Connect an App](/gateway/integrations/apps/)
 - [Inspect organization usage](/gateway/usage/)
 
-Organization Admin manages access and governance for the organization. Platform Admin manages provider configuration, provider availability, provider-native targets, and customer pricing. Those platform controls are not exposed in Organization Admin.
+Organization Admin manages organization access and governance. Platform Admin controls provider configuration, provider availability, provider-native targets, and customer pricing. You can’t change those settings in Organization Admin.
 
-Use **Usage** to investigate request outcomes, activity groups, breakdowns, and pricing health. Use **Policies**, **AI Models**, and **Model Router** to change organization behavior. Separating these areas makes it clear whether you are diagnosing current behavior or changing future requests.
+Use **Usage** to investigate request outcomes, activity groups, breakdowns, and pricing health. Use **Policies**, **AI Models**, and **Model Router** to change how future requests are handled.

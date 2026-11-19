@@ -149,6 +149,38 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 :root[data-theme='dark'] .conscia-home__links .conscia-home__primary-link { color: #17191c; }
 :root[data-theme='dark'] .conscia-home__links .conscia-home__primary-link:hover { background: var(--sl-color-accent-high); }
 
+/* Task pathways help readers choose a useful next step. */
+.conscia-path-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-block: 1.5rem;
+}
+.conscia-path-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border: 1px solid var(--sl-color-hairline);
+  border-top: 0.25rem solid var(--sl-color-accent);
+  border-radius: var(--sl-border-radius);
+  background: color-mix(in srgb, var(--sl-color-accent) 7%, var(--sl-color-bg));
+}
+.conscia-path-card:nth-child(3n + 2) { border-top-color: var(--sl-color-blue); }
+.conscia-path-card:nth-child(3n + 3) { border-top-color: var(--sl-color-green); }
+.conscia-path-card h3 { margin: 0; font-size: var(--sl-text-h4); line-height: var(--sl-line-height-headings); }
+.conscia-path-card h3 a { color: var(--sl-color-text); text-decoration: none; }
+.conscia-path-card h3 a:hover { color: var(--sl-color-text-accent); text-decoration: underline; text-underline-offset: 0.2em; }
+.conscia-path-card p { margin: 0; color: var(--sl-color-gray-2); }
+.conscia-path-card:focus-within { border-color: var(--sl-color-accent); }
+@media (min-width: 50rem) {
+  .conscia-path-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .conscia-path-card { transition: transform 180ms ease, border-color 180ms ease; }
+  .conscia-path-card:hover { transform: translateY(-2px); }
+}
+
 @media (max-width: 50rem) {
   .conscia-brand__divider, .conscia-brand__section { display: none; }
   .conscia-header-links { display: none; }

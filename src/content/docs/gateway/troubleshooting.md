@@ -43,7 +43,7 @@ The Developer Portal’s common error guidance includes `INVALID_API_KEY`, `API_
 
 Record the `x-request-id` and `x-correlation-id` response headers, when present, with the approximate time and endpoint path. Applications may send `x-correlation-id` when they already have a safe correlation value. These IDs let operators locate the request without seeing its content.
 
-For harness-level session and activity identifiers, see [Group usage by activity](/gateway/integrations/activity-correlation/). Do not use request IDs, prompts, credentials, or personal data as activity identifiers.
+To add session and activity IDs from a coding harness, follow [Group usage by activity](/gateway/integrations/activity-correlation/). Never use request IDs, prompts, credentials, or personal data as activity IDs.
 
 Developers can open a request from Developer Portal → **Usage** or paste its request ID into **Troubleshooting**. The personal lookup is scoped to requests attributed to the current organization membership. Organization administrators can inspect organization usage and open the raw request inside an activity group.
 

@@ -1,0 +1,23 @@
+---
+import StarlightSidebar from '@astrojs/starlight/components/Sidebar.astro';
+
+const { starlightRoute } = Astro.locals;
+const sectionPrefix = Astro.url.pathname.startsWith('/beacon/')
+  ? '/beacon/'
+  : Astro.url.pathname.startsWith('/gateway/')
+    ? '/gateway/'
+    : undefined;
+
+if (sectionPrefix) {
+  const belongsToSection = (entry: (typeof starlightRoute.sidebar)[number]): boolean => {
+    if (entry.type === 'link') return entry.href.startsWith(sectionPrefix);
+    return entry.entries.some(belongsToSection);
+  };
+
+  // Starlight gives each route its own sidebar tree, so filtering here keeps
+  // the built-in sidebar rendering, active state, and persisted state intact.
+  starlightRoute.sidebar = starlightRoute.sidebar.filter(belongsToSection);
+}
+---
+
+<StarlightSidebar />

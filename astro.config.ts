@@ -30,7 +30,6 @@ export default defineConfig({
           { label: 'Sub-agents', link: '/beacon/plugin-development/sub-agents/' },
         ] },
         { label: 'Start', items: [
-          { label: 'AI Gateway overview', link: '/gateway/' },
           { label: 'Get started', link: '/gateway/get-started/' },
         ] },
         { label: 'Concepts', items: [
@@ -66,6 +65,7 @@ export default defineConfig({
         SiteTitle: './src/components/SiteTitle.astro',
         SocialIcons: './src/components/HeaderLinks.astro',
         Footer: './src/components/Footer.astro',
+        Sidebar: './src/components/Sidebar.astro',
       },
       expressiveCode: {
         themes: ['github-light', 'github-dark'],

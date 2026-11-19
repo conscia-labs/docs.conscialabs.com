@@ -30,6 +30,12 @@ Advanced mode can use interpreted request attributes such as intent, domain, com
 
 ## Keep model and provider decisions separate
 
-The Model Router selects a public AI Model. Configure preferred and fallback provider routes on that model’s operational page. Keep provider names, provider-native IDs, provider credentials, and route identifiers out of router rules.
+```text
+model: "auto"
+  → ordered rules select one public AI Model
+  → that model’s preferred/fallback provider routes handle the request
+```
+
+A Model Router rule selects a public AI Model. Configure that model’s preferred and fallback provider routes on its operational page; keep provider names, provider-native IDs, provider credentials, and route identifiers out of router rules.
 
 Use the rule tester and diagnostics to review matched, skipped, disabled, unavailable, and winning rules. Confirm that the selected model remains available under current Model Access policies and allowances.

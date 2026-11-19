@@ -1,7 +1,6 @@
 ---
 title: Beacon documentation
 description: Use Beacon Work, manage projects and connectors, install plugins, and build your own extensions.
-template: splash
 hero:
   title: Beacon
   tagline: Work with AI on your local projects, connect the tools you use, and extend Beacon with plugins.
@@ -21,13 +20,19 @@ Beacon includes three related products:
 - **Beacon Work** is the macOS desktop app for local threads, project folders, connectors, and Marketplace plugins. The task guides in this section focus on Beacon Work.
 - **Beacon Code** is a separate terminal client for Claude Code. Its setup is different; Workspaces, Marketplace plugins, and the connector steps here apply to Beacon Work.
 
-## Use Beacon Work
+## Find your way around Beacon
 
-- [Get started with Beacon Work](/beacon/get-started/) — sign in, connect to AI Gateway, and start a thread.
-- [Work with projects and Workspaces](/beacon/projects/) — choose a local project folder and organize threads.
-- [Set up connectors](/beacon/connectors/) — connect an MCP server from a plugin or add your own.
-- [Install and manage plugins](/beacon/plugins/) — choose skills, agents, and connectors from the Marketplace.
-
-## Build a plugin
-
-A Beacon Work plugin can package skills, MCP connectors, and sub-agents. Start with the [plugin development guide](/beacon/plugin-development/), then follow the guides for [skills](/beacon/plugin-development/skills/), [MCP connectors](/beacon/plugin-development/mcp-connectors/), and [sub-agents](/beacon/plugin-development/sub-agents/).
+<div class="conscia-path-grid">
+  <article class="conscia-path-card">
+    <h3><a href="/beacon/get-started/">Start with a thread</a></h3>
+    <p>Sign in to Beacon Work, choose a local project folder, and send your first message. Use <a href="/beacon/projects/">projects and Workspaces</a> to organize threads.</p>
+  </article>
+  <article class="conscia-path-card">
+    <h3><a href="/beacon/connectors/">Connect and extend Beacon Work</a></h3>
+    <p>Give a project access to MCP tools with <a href="/beacon/connectors/">connectors</a>, or <a href="/beacon/plugins/">install plugins</a> with skills, agents, and connectors from the Marketplace.</p>
+  </article>
+  <article class="conscia-path-card">
+    <h3><a href="/beacon/plugin-development/">Build a plugin</a></h3>
+    <p>Package skills, MCP connectors, and sub-agents for Beacon Work. Start with the <a href="/beacon/plugin-development/">plugin development guide</a>, then explore <a href="/beacon/plugin-development/skills/">skills</a>, <a href="/beacon/plugin-development/mcp-connectors/">MCP connectors</a>, and <a href="/beacon/plugin-development/sub-agents/">sub-agents</a>.</p>
+  </article>
+</div>

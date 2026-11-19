@@ -1,7 +1,6 @@
 ---
 title: AI Gateway documentation
 description: Access AI models through Conscia AI Gateway with public model IDs and Conscia-issued credentials.
-template: splash
 hero:
   title: AI Gateway
   tagline: Access AI models with organization policies and clear usage records.
@@ -15,31 +14,21 @@ hero:
       variant: minimal
 ---
 
-## Get started
+## Set up and use AI Gateway
 
-[Make your first AI Gateway request](/gateway/get-started/). You’ll save a credential, find an accessible model, and send a request.
+<div class="conscia-path-grid">
+  <article class="conscia-path-card">
+    <h3><a href="/gateway/models/">Choose a model</a></h3>
+    <p>Find a public model ID your credential can use. Check that its transport and features fit your client. Start with <a href="/gateway/models/">model discovery</a>, <a href="/gateway/model-compatibility/">compatibility</a>, and <a href="/gateway/access-and-allowances/">access and allowances</a>.</p>
+  </article>
+  <article class="conscia-path-card">
+    <h3><a href="/gateway/integrations/">Connect a client</a></h3>
+    <p>Set up <a href="/gateway/integrations/codex/">Codex</a>, <a href="/gateway/integrations/claude-code/">Claude Code</a>, or <a href="/gateway/integrations/opencode/">OpenCode</a>. The <a href="/gateway/integrations/">integration overview</a> helps you choose a transport and links to <a href="/gateway/integrations/apps/">Apps</a> and <a href="/gateway/integrations/embeddings/">text embeddings</a>.</p>
+  </article>
+  <article class="conscia-path-card">
+    <h3><a href="/gateway/usage/">Operate and administer</a></h3>
+    <p><a href="/gateway/usage/">Review usage</a> or <a href="/gateway/troubleshooting/">troubleshoot a request</a>. If you’re an administrator, <a href="/gateway/organization-admin/">manage organization access</a> for people, groups, policies, models, and allowances.</p>
+  </article>
+</div>
 
-For coding assistants, choose the guide for [Codex](/gateway/integrations/codex/), [Claude Code](/gateway/integrations/claude-code/), or [OpenCode](/gateway/integrations/opencode/).
-
-## Concepts
-
-- [Authenticate with a Conscia credential](/gateway/authentication/)
-- [Choose a model](/gateway/models/)
-- [Check model compatibility](/gateway/model-compatibility/)
-- [Understand model access and allowances](/gateway/access-and-allowances/)
-
-## Integrations
-
-[Connect a client to AI Gateway](/gateway/integrations/) through the OpenAI-compatible or Anthropic-compatible surface. The integrations section also covers [text embeddings](/gateway/integrations/embeddings/), [Apps](/gateway/integrations/apps/), and [activity-based usage correlation](/gateway/integrations/activity-correlation/).
-
-## Operate
-
-[Inspect Gateway usage](/gateway/usage/) and [troubleshoot requests](/gateway/troubleshooting/) with request history, activity groups, status guidance, and safe diagnostic details.
-
-## Organization Admin
-
-[Manage organization access](/gateway/organization-admin/) for people, groups, policies, models, allowances, and automatic model selection.
-
-## Reference
-
-[AI Gateway API reference](/gateway/api/) explains the current contract integration status.
+To see how related requests group together, read [Group usage by activity](/gateway/integrations/activity-correlation/).

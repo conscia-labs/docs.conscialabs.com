@@ -25,7 +25,7 @@ For OpenAI-compatible requests, set the `/v1` base URL:
 export CONSCIA_BASE_URL="https://your-platform.ai.conscialabs.com/v1"
 ```
 
-For Anthropic-compatible clients, use the Gateway origin shown in Quickstart and let the client add its documented versioned path. See [Connect a client](/gateway/integrations/) for the distinction.
+For Anthropic-compatible clients, copy the Gateway origin from Quickstart. Let the client add its documented versioned path. [Connect a client](/gateway/integrations/) explains the difference.
 
 ## 3. Discover accessible models
 

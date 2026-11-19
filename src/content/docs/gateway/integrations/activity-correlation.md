@@ -123,4 +123,4 @@ The surrounding wrapper must update `currentActivityId` at the boundary of each 
 - When multiple users share one credential, principal-scoped grouping still applies. Explicit identifiers help distinguish concurrent work.
 - When contacting support, provide the `x-request-id` and `x-correlation-id` response headers, session ID, activity ID, approximate time, and endpoint path. Redact credentials, prompt text, request bodies, personal data, and other secrets.
 
-For a complete usage investigation workflow, see [Inspect Gateway usage](/gateway/usage/). For general request diagnosis, see [Troubleshoot AI Gateway requests](/gateway/troubleshooting/). For usage, access, and allowance context, see [Manage model access and allowances](/gateway/access-and-allowances/).
+Start with [Inspect Gateway usage](/gateway/usage/). If a request failed, [troubleshoot it](/gateway/troubleshooting/). For access and limits, read [Manage model access and allowances](/gateway/access-and-allowances/).

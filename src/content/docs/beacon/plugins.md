@@ -31,8 +31,8 @@ Open **Marketplace → Installed** to see installed plugins.
 
 ## Review permissions and trust
 
-Marketplace versions are checked before upload and reviewed before they are made available to other users. Review the publisher and the permissions shown in the item and install dialog before installing. A plugin’s skills and agents add instructions for Beacon’s agent; a connector provides tools that can reach a remote service or run local code.
+After you submit a version, Beacon checks the package. An administrator reviews it before other people can browse it. Before installing, check who published the plugin and what permissions it asks for. Skills and agents add instructions for Beacon’s agent. Connectors provide tools that can reach a remote service or run code on your Mac.
 
-**Important:** A local MCP connector runs outside the thread sandbox with your Mac account’s permissions. It can read local files and access the network. Install connectors only when you trust their source. Beacon asks before connector actions that are not approved as read-only, and you can turn off a connector or require approval for an action in its connector panel.
+**Important:** A local MCP connector runs outside the thread sandbox with your Mac account’s permissions. It can read local files and access the network. Install connectors only when you trust their source. Beacon asks before actions that aren’t approved as read-only. In the connector panel, you can turn off a connector or require approval for specific actions.
 
 To publish your own extension, see the [plugin development guide](/beacon/plugin-development/).

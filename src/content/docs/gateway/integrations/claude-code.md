@@ -7,7 +7,9 @@ Claude Code connects to Conscia AI Gateway through the Anthropic Messages transp
 
 Use a personal credential for a developer’s direct calls or an [application credential](/gateway/integrations/apps/) for a service runtime. Keep Anthropic and other upstream-provider credentials out of these settings.
 
-## Before you begin
+## Check compatibility and access
+
+Before you configure Claude Code, check that the model is available to your credential and supports Anthropic Messages. The [model compatibility guide](/gateway/model-compatibility/) shows its Claude Code status.
 
 You need:
 
@@ -33,6 +35,10 @@ Use `ANTHROPIC_API_KEY` instead of `ANTHROPIC_AUTH_TOKEN` if you prefer. Claude 
 Use the public model ID shown in the Developer Portal or returned by `GET /v1/models`. Claude Code’s model picker may filter IDs to names containing `claude` or `anthropic`; set `ANTHROPIC_MODEL` explicitly when the accessible public ID does not match that filter.
 
 For provider and Gateway behavior that can change with Claude Code releases, see Anthropic’s [Claude Code gateway documentation](https://code.claude.com/docs/en/llm-gateway).
+
+## Send a test prompt
+
+Send Claude Code a short, non-sensitive prompt using the configured public model ID. A response confirms the setup; you can find the request and outcome in the Usage view available to your role. If the request fails, save its IDs and follow [Gateway troubleshooting](/gateway/troubleshooting/).
 
 ## Add usage correlation
 
